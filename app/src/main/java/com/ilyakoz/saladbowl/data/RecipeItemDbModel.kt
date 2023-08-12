@@ -11,7 +11,7 @@ data class RecipeItemDbModel(
     val id: Int,
     val name: String,
     val ingredients: String,
-    val image: String?,
-    val timeStamp: Long
+    val description: String?,
+    val image: String?
 
 )

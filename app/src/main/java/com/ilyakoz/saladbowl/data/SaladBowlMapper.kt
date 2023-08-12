@@ -9,7 +9,7 @@ class SaladBowlMapper {
         name = recipeItem.name,
         ingredients = recipeItem.ingredients,
         image = recipeItem.image,
-        timeStamp = recipeItem.timeStamp
+        description = recipeItem.description
     )
 
     fun mapDbModelToEntity(recipeItemDbModel: RecipeItemDbModel) = RecipeItem(
@@ -17,7 +17,7 @@ class SaladBowlMapper {
         name = recipeItemDbModel.name,
         ingredients = recipeItemDbModel.ingredients,
         image = recipeItemDbModel.image,
-        timeStamp = recipeItemDbModel.timeStamp
+        description = recipeItemDbModel.description
     )
 
     fun mapListDbModelToListEntity(list : List<RecipeItemDbModel>) = list.map {
