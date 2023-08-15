@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = "recipe_item")
+@Entity(tableName = "recipe_items")
 data class RecipeItemDbModel(
 
     @PrimaryKey(autoGenerate = true)

@@ -11,15 +11,15 @@ import androidx.room.Query
 interface RecipeItemDao {
 
 
-    @Query("SELECT * FROM recipe_item")
+    @Query("SELECT * FROM recipe_items")
     fun getRecipeList(): LiveData<List<RecipeItemDbModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addRecipe(recipeItemDbModel: RecipeItemDbModel)
 
-    @Query("DELETE FROM recipe_item WHERE id=:recipeItemId")
+    @Query("DELETE FROM recipe_items WHERE id=:recipeItemId")
     suspend fun deleteRecipe(recipeItemId: Int)
 
-    @Query("SELECT * FROM recipe_item WHERE id=:recipeItemId LIMIT 1")
+    @Query("SELECT * FROM recipe_items WHERE id=:recipeItemId LIMIT 1")
     suspend fun getRecipe(recipeItemId: Int): RecipeItemDbModel
 }

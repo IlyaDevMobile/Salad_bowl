@@ -30,7 +30,12 @@ class SaladBowlRepositoryImpl(application: Application) : SaladBowlRepository {
         return mapper.mapDbModelToEntity(dbModel)
     }
 
-    override fun getRecipeList(): LiveData<List<RecipeItem>> = recipeItemDao.getRecipeList().map {
-        mapper.mapListDbModelToListEntity(it)
-    }
+    override fun getRecipeList(): LiveData<List<RecipeItem>> = recipeItemDao.getRecipeList()
+        .map { list ->
+            list.map { dbModel ->
+                mapper.mapDbModelToEntity(dbModel)
+            }
+        }
+
 }
+

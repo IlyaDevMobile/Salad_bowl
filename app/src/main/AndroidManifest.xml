@@ -13,10 +13,10 @@
         android:theme="@style/Theme.SaladBowl"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.CreateRecipeActivity"
+            android:name=".presentation.createNewRecipe.CreateRecipeActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.listRecipe.MainActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.SplashScreenActivity"
