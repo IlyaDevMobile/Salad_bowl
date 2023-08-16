@@ -1,10 +1,10 @@
-package com.ilyakoz.saladbowl.presentation.adapter
+package com.ilyakoz.saladbowl.cleancode.application.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.ilyakoz.saladbowl.databinding.ItemSaladBinding
-import com.ilyakoz.saladbowl.domain.RecipeItem
+import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 
 class SaladBowlAdapter :
     ListAdapter<RecipeItem, RecipeItemViewHolder>(RecipeItemDiffCallback()) {

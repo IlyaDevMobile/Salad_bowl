@@ -1,7 +1,7 @@
-package com.ilyakoz.saladbowl.presentation.adapter
+package com.ilyakoz.saladbowl.cleancode.application.presentation.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.ilyakoz.saladbowl.domain.RecipeItem
+import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 
 class RecipeItemDiffCallback : DiffUtil.ItemCallback<RecipeItem>() {
     override fun areItemsTheSame(oldItem: RecipeItem, newItem: RecipeItem): Boolean {

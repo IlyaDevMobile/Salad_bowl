@@ -1,4 +1,4 @@
-package com.ilyakoz.saladbowl.presentation.createNewRecipe
+package com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe
 
 import android.content.Context
 import android.content.Intent
@@ -6,18 +6,21 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.ilyakoz.saladbowl.R
+import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 import com.ilyakoz.saladbowl.databinding.ActivityCreateRecipeBinding
-import com.ilyakoz.saladbowl.domain.RecipeItem
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class CreateRecipeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateRecipeBinding
-    private lateinit var viewModel: CreateRecipeViewModel
+    private val viewModel: CreateRecipeViewModel by viewModels()
 
     private var screenMode = MODE_UNKNOWN
     private var recipeItemId = RecipeItem.UNDEFINED_ID
@@ -26,7 +29,6 @@ class CreateRecipeActivity : AppCompatActivity() {
         binding = ActivityCreateRecipeBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
         parseIntent()
-        viewModel = ViewModelProvider(this)[CreateRecipeViewModel::class.java]
 
         binding.titleFld.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -123,6 +125,7 @@ class CreateRecipeActivity : AppCompatActivity() {
             }
         }
     }
+
 
     companion object {
 

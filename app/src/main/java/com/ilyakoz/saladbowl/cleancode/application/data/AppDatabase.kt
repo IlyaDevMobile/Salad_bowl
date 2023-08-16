@@ -1,4 +1,4 @@
-package com.ilyakoz.saladbowl.data
+package com.ilyakoz.saladbowl.cleancode.application.data
 
 import android.app.Application
 import androidx.room.Database
