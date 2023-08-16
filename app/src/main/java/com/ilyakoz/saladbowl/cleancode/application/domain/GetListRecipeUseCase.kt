@@ -1,4 +1,4 @@
-package com.ilyakoz.saladbowl.domain
+package com.ilyakoz.saladbowl.cleancode.application.domain
 
 import androidx.lifecycle.LiveData
 

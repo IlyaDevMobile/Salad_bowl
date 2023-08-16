@@ -1,4 +1,4 @@
-package com.ilyakoz.saladbowl.data
+package com.ilyakoz.saladbowl.cleancode.application.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,10 +1,10 @@
-package com.ilyakoz.saladbowl.data
+package com.ilyakoz.saladbowl.cleancode.application.data
 
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import com.ilyakoz.saladbowl.domain.RecipeItem
-import com.ilyakoz.saladbowl.domain.SaladBowlRepository
+import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
+import com.ilyakoz.saladbowl.cleancode.application.domain.SaladBowlRepository
 
 class SaladBowlRepositoryImpl(application: Application) : SaladBowlRepository {
 

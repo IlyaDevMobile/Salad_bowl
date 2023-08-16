@@ -1,9 +1,9 @@
-package com.ilyakoz.saladbowl.presentation.adapter
+package com.ilyakoz.saladbowl.cleancode.application.presentation.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.ilyakoz.saladbowl.R
 import com.ilyakoz.saladbowl.databinding.ItemSaladBinding
-import com.ilyakoz.saladbowl.domain.RecipeItem
+import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 
 class RecipeItemViewHolder(private val binding: ItemSaladBinding) :
     RecyclerView.ViewHolder(binding.root) {

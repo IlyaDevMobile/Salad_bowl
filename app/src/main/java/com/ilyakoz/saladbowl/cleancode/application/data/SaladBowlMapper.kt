@@ -1,6 +1,6 @@
-package com.ilyakoz.saladbowl.data
+package com.ilyakoz.saladbowl.cleancode.application.data
 
-import com.ilyakoz.saladbowl.domain.RecipeItem
+import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 
 class SaladBowlMapper {
 

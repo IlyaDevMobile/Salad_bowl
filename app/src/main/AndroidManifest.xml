@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".cleancode.application.di.app.App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,13 +14,13 @@
         android:theme="@style/Theme.SaladBowl"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.createNewRecipe.CreateRecipeActivity"
+            android:name=".cleancode.application.presentation.createNewRecipe.CreateRecipeActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.listRecipe.MainActivity"
+            android:name=".cleancode.application.presentation.listRecipe.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.SplashScreenActivity"
+            android:name=".cleancode.application.presentation.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

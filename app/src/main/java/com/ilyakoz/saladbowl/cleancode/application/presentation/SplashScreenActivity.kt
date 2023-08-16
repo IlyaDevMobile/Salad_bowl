@@ -1,4 +1,4 @@
-package com.ilyakoz.saladbowl.presentation
+package com.ilyakoz.saladbowl.cleancode.application.presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.ilyakoz.saladbowl.R
-import com.ilyakoz.saladbowl.presentation.listRecipe.MainActivity
+import com.ilyakoz.saladbowl.cleancode.application.presentation.listRecipe.MainActivity
 
 class SplashScreenActivity: AppCompatActivity() {
 

@@ -1,24 +1,29 @@
-package com.ilyakoz.saladbowl.presentation.listRecipe
+package com.ilyakoz.saladbowl.cleancode.application.presentation.listRecipe
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.GridLayoutManager
+import com.ilyakoz.saladbowl.cleancode.application.presentation.adapter.SaladBowlAdapter
+import com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe.CreateRecipeActivity
 import com.ilyakoz.saladbowl.databinding.ActivityMainBinding
-import com.ilyakoz.saladbowl.presentation.adapter.SaladBowlAdapter
-import com.ilyakoz.saladbowl.presentation.createNewRecipe.CreateRecipeActivity
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var adapter: SaladBowlAdapter
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         val view = binding.root
         setContentView(view)
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         setupRecyclerView()
         viewModel.recipeListTest.observe(this) {
             adapter.submitList(it)

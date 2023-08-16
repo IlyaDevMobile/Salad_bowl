@@ -1,23 +1,27 @@
-package com.ilyakoz.saladbowl.presentation.createNewRecipe
+package com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ilyakoz.saladbowl.data.SaladBowlRepositoryImpl
-import com.ilyakoz.saladbowl.domain.AddRecipeUseCase
-import com.ilyakoz.saladbowl.domain.EditRecipeUseCase
-import com.ilyakoz.saladbowl.domain.GetRecipeItemUseCase
-import com.ilyakoz.saladbowl.domain.RecipeItem
+import androidx.lifecycle.viewModelScope
+import com.ilyakoz.saladbowl.cleancode.application.domain.AddRecipeUseCase
+import com.ilyakoz.saladbowl.cleancode.application.domain.EditRecipeUseCase
+import com.ilyakoz.saladbowl.cleancode.application.domain.GetRecipeItemUseCase
+import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CreateRecipeViewModel(application : Application) : AndroidViewModel(application) {
 
-    private val repository = SaladBowlRepositoryImpl(application)
+@HiltViewModel
+class CreateRecipeViewModel @Inject constructor(
+    private val getRecipeItemUseCase: GetRecipeItemUseCase,
+    private val addRecipeUseCase: AddRecipeUseCase,
+    private val editRecipeUseCase: EditRecipeUseCase
 
-    private val getRecipeItemUseCase = GetRecipeItemUseCase(repository)
-    private val addRecipeUseCase = AddRecipeUseCase(repository)
-    private val editRecipeUseCase = EditRecipeUseCase(repository)
+
+) : ViewModel() {
+
 
     private val _errorInputName = MutableLiveData<Boolean>()
     val errorInputName: LiveData<Boolean>
@@ -46,9 +50,12 @@ class CreateRecipeViewModel(application : Application) : AndroidViewModel(applic
         val ingredients = parseText(inputIngredients)
         val fieldsValid = validateInput(name, ingredients)
         if (fieldsValid) {
-            val recipeItem = RecipeItem(name, ingredients, inputImage, inputDescription)
-            addRecipeUseCase.addRecipeItem(recipeItem)
-            finishWork()
+            viewModelScope.launch {
+                val recipeItem = RecipeItem(name, ingredients, inputImage, inputDescription)
+                addRecipeUseCase.addRecipeItem(recipeItem)
+                finishWork()
+            }
+
 
         }
     }
@@ -65,13 +72,16 @@ class CreateRecipeViewModel(application : Application) : AndroidViewModel(applic
         val fieldsValid = validateInput(name, ingredients)
         if (fieldsValid) {
             _recipeItem.value?.let {
-                val item = it.copy(
-                    name = name,
-                    ingredients = ingredients,
-                    description = description,
-                )
-                editRecipeUseCase.editRecipeItem(item)
-                finishWork()
+                viewModelScope.launch {
+                    val item = it.copy(
+                        name = name,
+                        ingredients = ingredients,
+                        description = description,
+                    )
+                    editRecipeUseCase.editRecipeItem(item)
+                    finishWork()
+                }
+
             }
 
 
