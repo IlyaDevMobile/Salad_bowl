@@ -4,7 +4,7 @@ import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 
 class SaladBowlMapper {
 
-    fun mapEntityDbModel(recipeItem: RecipeItem) = RecipeItemDbModel(
+    fun mapEntityDbModel(recipeItem: RecipeItem, image: String?) = RecipeItemDbModel(
         id = recipeItem.id,
         name = recipeItem.name,
         ingredients = recipeItem.ingredients,
@@ -20,8 +20,7 @@ class SaladBowlMapper {
         description = recipeItemDbModel.description
     )
 
-    fun mapListDbModelToListEntity(list : List<RecipeItemDbModel>) = list.map {
+    fun mapListDbModelToListEntity(list: List<RecipeItemDbModel>) = list.map {
         mapDbModelToEntity(it)
     }
 }
-

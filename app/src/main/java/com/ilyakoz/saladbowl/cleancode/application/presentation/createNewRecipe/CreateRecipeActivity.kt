@@ -1,23 +1,33 @@
 package com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.ilyakoz.saladbowl.R
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 import com.ilyakoz.saladbowl.databinding.ActivityCreateRecipeBinding
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CreateRecipeActivity : AppCompatActivity() {
+
+    private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
+
 
     private lateinit var binding: ActivityCreateRecipeBinding
     private val viewModel: CreateRecipeViewModel by viewModels()
@@ -29,7 +39,50 @@ class CreateRecipeActivity : AppCompatActivity() {
         binding = ActivityCreateRecipeBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
         parseIntent()
+        setupTextWatcher()
+        closeCancelActivity()
+        selectModeActivity()
+        checkErrorName()
+        setupGalleryLauncher()
+        setupAddImageViewBtn()
+        viewModel.shouldCloseScreen.observe(this) {
+            finish()
+        }
 
+    }
+
+    private fun loadAndDisplayImage(imageUri: Uri) {
+        Glide.with(this)
+            .asBitmap()
+            .load(imageUri)
+            .centerCrop()
+            .into(object : BitmapImageViewTarget(binding.saladImageview) {
+                override fun setResource(resource: Bitmap?) {
+                    binding.saladImageview.setImageBitmap(resource)
+                }
+            })
+    }
+
+
+    private fun checkErrorName() {
+        viewModel.errorInputName.observe(this) {
+            val message = if (it) {
+                getString(R.string.error_input_count)
+            } else {
+                null
+
+            }
+            binding.titleFld.error = message
+        }
+    }
+
+    private fun closeCancelActivity() {
+        binding.cancelButton.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun setupTextWatcher() {
         binding.titleFld.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -40,30 +93,13 @@ class CreateRecipeActivity : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {
             }
-        }
+        })
+    }
 
-        )
-
-        binding.cancelButton.setOnClickListener {
-            finish()
-        }
-
-
+    private fun selectModeActivity() {
         when (screenMode) {
             MODE_EDIT -> launchEditMode()
             MODE_ADD -> launchAddMode()
-        }
-        viewModel.errorInputName.observe(this) {
-            val message = if (it) {
-                getString(R.string.error_input_count)
-            } else {
-                null
-
-            }
-            binding.titleFld.error = message
-        }
-        viewModel.shouldCloseScreen.observe(this) {
-            finish()
         }
     }
 
@@ -72,7 +108,7 @@ class CreateRecipeActivity : AppCompatActivity() {
             with(binding) {
                 val name = titleFld?.text?.toString()
                 val ingredients = ingredientsFld?.text?.toString()
-                val image = saladImageview?.contentDescription?.toString() // Change this logic
+                val image = viewModel.selectedImageUri.value?.toString()
                 val description = descriptionFld?.text?.toString()
 
                 viewModel.viewModelScope.launch {
@@ -90,21 +126,58 @@ class CreateRecipeActivity : AppCompatActivity() {
                 binding.ingredientsFld.setText(recipeItem.ingredients)
                 binding.descriptionFld.setText(recipeItem.description)
 
+                // Загрузите и отобразите изображение, если оно есть в объекте recipeItem
+                recipeItem.image?.let { imageUriString ->
+                    val imageUri = Uri.parse(imageUriString)
+                    loadAndDisplayImage(imageUri)
+                }
+
                 setupEditButton()
             }
         }
     }
+
 
     private fun setupEditButton() {
         binding.saveButton.setOnClickListener {
             with(binding) {
                 val name = titleFld?.text?.toString()
                 val ingredients = ingredientsFld?.text?.toString()
-                val image = saladImageview?.contentDescription?.toString() // Change this logic
                 val description = descriptionFld?.text?.toString()
+                val image = viewModel.selectedImageUri.value?.toString() // Получите ссылку на изображение
 
                 viewModel.viewModelScope.launch {
-                    viewModel.editRecipeItem(name, ingredients, image, description)
+                    viewModel.editRecipeItem(name, ingredients, description, image) // Передайте параметр image
+                }
+            }
+        }
+    }
+
+
+    private fun setupGalleryLauncher() {
+        galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val selectedImageUri = result.data?.data
+                selectedImageUri?.let {
+                    loadAndDisplayImage(it)
+                }
+            }
+        }
+    }
+
+    private fun setupAddImageViewBtn() {
+        binding.AddImageViewBtn.setOnClickListener {
+            val galleryIntent = Intent(Intent.ACTION_PICK)
+            galleryIntent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            galleryLauncher.launch(galleryIntent)
+        }
+        // Set the selectedImageUri to the ViewModel's LiveData
+        galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val selectedImageUri = result.data?.data
+                selectedImageUri?.let {
+                    viewModel.setSelectedImageUri(it) // Update the ViewModel's selectedImageUri
+                    loadAndDisplayImage(it)
                 }
             }
         }
