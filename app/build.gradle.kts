@@ -63,6 +63,8 @@ dependencies {
     implementation ("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-compiler:2.44")
 
+    ksp("com.github.bumptech.glide:ksp:4.14.2")
+    implementation("com.github.bumptech.glide:glide:4.14.2")
 
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")

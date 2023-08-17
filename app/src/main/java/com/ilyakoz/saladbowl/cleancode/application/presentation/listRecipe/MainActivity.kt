@@ -1,7 +1,6 @@
 package com.ilyakoz.saladbowl.cleancode.application.presentation.listRecipe
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -10,10 +9,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.ilyakoz.saladbowl.cleancode.application.presentation.adapter.SaladBowlAdapter
 import com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe.CreateRecipeActivity
 import com.ilyakoz.saladbowl.databinding.ActivityMainBinding
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
 
 
 @AndroidEntryPoint
@@ -42,7 +39,6 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.addNewRecipeBtn.setOnClickListener {
-            Log.d("MainActivity", it.toString())
             val intent = CreateRecipeActivity.newIntentAddItem(this)
             startActivity(intent)
         }
@@ -69,7 +65,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun getRecipeItem() {
         adapter.onRecipeItemClickListener = {
-            Log.d("MainActivity", it.toString())
             val intent = CreateRecipeActivity.newIntentEditItem(this, it.id)
             startActivity(intent)
         }
