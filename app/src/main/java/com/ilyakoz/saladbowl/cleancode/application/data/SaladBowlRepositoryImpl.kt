@@ -25,7 +25,8 @@ class SaladBowlRepositoryImpl(application: Application) : SaladBowlRepository {
         recipeItemDao.addRecipe(dbModel)
     }
 
-    private suspend fun saveImageToFile(imageUri: Uri): String {
+
+    override suspend fun saveImageToFile(imageUri: Uri): String {
         return withContext(Dispatchers.IO) {
             val targetFile =
                 File(applicationContext.cacheDir, "images/${System.currentTimeMillis()}.jpg")

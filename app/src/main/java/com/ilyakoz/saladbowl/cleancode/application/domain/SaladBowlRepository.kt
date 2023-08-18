@@ -10,6 +10,6 @@ interface SaladBowlRepository {
    suspend fun editRecipe(recipeItem: RecipeItem, imageUri: String)
    suspend fun getRecipe(recipeItemId: Int) : RecipeItem
 
-
+   suspend fun saveImageToFile(imageUri: Uri): String
    fun getRecipeList(): LiveData<List<RecipeItem>>
 }
