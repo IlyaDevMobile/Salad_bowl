@@ -1,19 +1,16 @@
 package com.ilyakoz.saladbowl.cleancode.application.domain
 
-import android.net.Uri
 
 data class RecipeItem(
 
     val name: String,
     val ingredients: String,
-    val image: String?,
     val description: String?,
+    val imageUri: String?,
     var id: Int = UNDEFINED_ID
 
-    )
-
-{
-    companion object{
+) {
+    companion object {
         const val UNDEFINED_ID = 0
     }
 }

@@ -1,13 +1,10 @@
 package com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe
 
-import android.content.ContentResolver
-import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ilyakoz.saladbowl.R
 import com.ilyakoz.saladbowl.cleancode.application.domain.AddRecipeUseCase
 import com.ilyakoz.saladbowl.cleancode.application.domain.EditRecipeUseCase
 import com.ilyakoz.saladbowl.cleancode.application.domain.GetRecipeItemUseCase
@@ -58,10 +55,11 @@ class CreateRecipeViewModel @Inject constructor(
         inputName: String?,
         inputIngredients: String?,
         inputDescription: String?,
-        description: String?
+        inputNameImage: String?
     ) {
         val name = parseText(inputName)
         val ingredients = parseText(inputIngredients)
+        val description = parseText(inputDescription)
         val fieldsValid = validateInput(name)
         if (fieldsValid) {
             viewModelScope.launch {
@@ -69,14 +67,16 @@ class CreateRecipeViewModel @Inject constructor(
                 val recipeItem = RecipeItem(
                     name,
                     ingredients,
+                    description,
                     imageUri.toString(),
-                    inputDescription
                 )
                 addRecipeUseCase.addRecipeItem(recipeItem, imageUri)
                 finishWork()
             }
         }
     }
+
+
 
 
     suspend fun editRecipeItem(
@@ -88,23 +88,20 @@ class CreateRecipeViewModel @Inject constructor(
         val name = parseText(inputName)
         val ingredients = parseText(inputIngredients)
         val description = parseText(inputDescription)
-        val image = parseText(inputNameImage) // Сохраняем ссылку на изображение в поле image
+        val imageUri = parseText(inputNameImage) // Сохраняем ссылку на изображение в поле image
         val fieldsValid = validateInput(name)
-        val imageUri: Uri? =
+        val image: Uri? =
             _selectedImageUri.value // Получите выбранный URI изображения из LiveData
-        if (fieldsValid && imageUri != null) {
+        if (fieldsValid && image != null) {
             _recipeItem.value?.let {
                 viewModelScope.launch {
                     val item = it.copy(
                         name = name,
                         ingredients = ingredients,
                         description = description,
-                        image = image // Сохраните ссылку на изображение в поле image
+                        imageUri = imageUri // Сохраните ссылку на изображение в поле image
                     )
-                    editRecipeUseCase.editRecipeItem(
-                        item,
-                        imageUri
-                    ) // Передайте параметр imageUri и null для image
+                    editRecipeUseCase.editRecipeItem (item,imageUri)// Передайте параметр imageUri и null для image
                     finishWork()
                 }
             }

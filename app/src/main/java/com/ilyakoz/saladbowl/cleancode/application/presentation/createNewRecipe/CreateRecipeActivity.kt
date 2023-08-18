@@ -48,7 +48,6 @@ class CreateRecipeActivity : AppCompatActivity() {
         viewModel.shouldCloseScreen.observe(this) {
             finish()
         }
-
     }
 
     private fun loadAndDisplayImage(imageUri: Uri) {
@@ -108,11 +107,12 @@ class CreateRecipeActivity : AppCompatActivity() {
             with(binding) {
                 val name = titleFld?.text?.toString()
                 val ingredients = ingredientsFld?.text?.toString()
-                val image = viewModel.selectedImageUri.value?.toString()
                 val description = descriptionFld?.text?.toString()
+                val image = viewModel.selectedImageUri.value?.toString()
+
 
                 viewModel.viewModelScope.launch {
-                    viewModel.addRecipeItem(name, ingredients, image, description)
+                    viewModel.addRecipeItem(name, ingredients, description, image)
                 }
             }
         }
@@ -127,7 +127,7 @@ class CreateRecipeActivity : AppCompatActivity() {
                 binding.descriptionFld.setText(recipeItem.description)
 
                 // Загрузите и отобразите изображение, если оно есть в объекте recipeItem
-                recipeItem.image?.let { imageUriString ->
+                recipeItem.imageUri?.let { imageUriString ->
                     val imageUri = Uri.parse(imageUriString)
                     loadAndDisplayImage(imageUri)
                 }
@@ -147,7 +147,12 @@ class CreateRecipeActivity : AppCompatActivity() {
                 val image = viewModel.selectedImageUri.value?.toString() // Получите ссылку на изображение
 
                 viewModel.viewModelScope.launch {
-                    viewModel.editRecipeItem(name, ingredients, description, image) // Передайте параметр image
+                    viewModel.editRecipeItem(
+                        name,
+                        ingredients,
+                        description,
+                        image
+                    ) // Передайте параметр image
                 }
             }
         }
@@ -155,14 +160,15 @@ class CreateRecipeActivity : AppCompatActivity() {
 
 
     private fun setupGalleryLauncher() {
-        galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val selectedImageUri = result.data?.data
-                selectedImageUri?.let {
-                    loadAndDisplayImage(it)
+        galleryLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val selectedImageUri = result.data?.data
+                    selectedImageUri?.let {
+                        loadAndDisplayImage(it)
+                    }
                 }
             }
-        }
     }
 
     private fun setupAddImageViewBtn() {
@@ -172,15 +178,16 @@ class CreateRecipeActivity : AppCompatActivity() {
             galleryLauncher.launch(galleryIntent)
         }
         // Set the selectedImageUri to the ViewModel's LiveData
-        galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val selectedImageUri = result.data?.data
-                selectedImageUri?.let {
-                    viewModel.setSelectedImageUri(it) // Update the ViewModel's selectedImageUri
-                    loadAndDisplayImage(it)
+        galleryLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val selectedImageUri = result.data?.data
+                    selectedImageUri?.let {
+                        viewModel.setSelectedImageUri(it) // Update the ViewModel's selectedImageUri
+                        loadAndDisplayImage(it)
+                    }
                 }
             }
-        }
     }
 
 

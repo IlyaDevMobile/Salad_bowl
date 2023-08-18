@@ -56,8 +56,8 @@ class SaladBowlRepositoryImpl(application: Application) : SaladBowlRepository {
         recipeItemDao.deleteRecipe(recipeItem.id)
     }
 
-    override suspend fun editRecipe(recipeItem: RecipeItem) {
-        recipeItemDao.addRecipe(mapper.mapEntityDbModel(recipeItem, image = ""))
+    override suspend fun editRecipe(recipeItem: RecipeItem, imageUri: String) {
+        recipeItemDao.addRecipe(mapper.mapEntityDbModel(recipeItem, imageUri = imageUri))
     }
 
     override suspend fun getRecipe(recipeItemId: Int): RecipeItem {
