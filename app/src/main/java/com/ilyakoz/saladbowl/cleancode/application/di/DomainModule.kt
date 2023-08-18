@@ -37,4 +37,9 @@ class DomainModule {
         return GetRecipeItemUseCase(saladBowlRepository)
     }
 
+//    @Provides
+//    fun provideSaveImageToFileUseCase(saladBowlRepository: SaladBowlRepository) : SaveImageToFileUseCase{
+//        return SaveImageToFileUseCase(saladBowlRepository)
+//    }
+
 }

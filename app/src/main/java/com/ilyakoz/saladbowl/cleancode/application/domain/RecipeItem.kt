@@ -1,5 +1,7 @@
 package com.ilyakoz.saladbowl.cleancode.application.domain
 
+import android.net.Uri
+
 data class RecipeItem(
 
     val name: String,

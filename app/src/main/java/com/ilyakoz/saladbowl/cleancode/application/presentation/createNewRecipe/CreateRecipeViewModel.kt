@@ -1,10 +1,13 @@
 package com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe
 
+import android.content.ContentResolver
+import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ilyakoz.saladbowl.R
 import com.ilyakoz.saladbowl.cleancode.application.domain.AddRecipeUseCase
 import com.ilyakoz.saladbowl.cleancode.application.domain.EditRecipeUseCase
 import com.ilyakoz.saladbowl.cleancode.application.domain.GetRecipeItemUseCase
@@ -46,6 +49,11 @@ class CreateRecipeViewModel @Inject constructor(
         _selectedImageUri.value = uri
     }
 
+
+    private val defaultImageUri =
+        Uri.parse("android.resource://${com.ilyakoz.saladbowl.R.drawable.ic_emptyphoto}")
+
+
     suspend fun addRecipeItem(
         inputName: String?,
         inputIngredients: String?,
@@ -57,20 +65,19 @@ class CreateRecipeViewModel @Inject constructor(
         val fieldsValid = validateInput(name)
         if (fieldsValid) {
             viewModelScope.launch {
-                val imageUri = selectedImageUri.value // Получите выбранный URI изображения из ViewModel
+                val imageUri = selectedImageUri.value ?: defaultImageUri
                 val recipeItem = RecipeItem(
                     name,
                     ingredients,
-                    imageUri?.toString(), // Преобразуйте Uri в строку
+                    imageUri.toString(),
                     inputDescription
                 )
-                if (imageUri != null) {
-                    addRecipeUseCase.addRecipeItem(recipeItem,imageUri)
-                }
+                addRecipeUseCase.addRecipeItem(recipeItem, imageUri)
                 finishWork()
             }
         }
     }
+
 
     suspend fun editRecipeItem(
         inputName: String?,
@@ -83,7 +90,8 @@ class CreateRecipeViewModel @Inject constructor(
         val description = parseText(inputDescription)
         val image = parseText(inputNameImage) // Сохраняем ссылку на изображение в поле image
         val fieldsValid = validateInput(name)
-        val imageUri: Uri? = _selectedImageUri.value // Получите выбранный URI изображения из LiveData
+        val imageUri: Uri? =
+            _selectedImageUri.value // Получите выбранный URI изображения из LiveData
         if (fieldsValid && imageUri != null) {
             _recipeItem.value?.let {
                 viewModelScope.launch {
@@ -93,14 +101,15 @@ class CreateRecipeViewModel @Inject constructor(
                         description = description,
                         image = image // Сохраните ссылку на изображение в поле image
                     )
-                    editRecipeUseCase.editRecipeItem(item, imageUri) // Передайте параметр imageUri и null для image
+                    editRecipeUseCase.editRecipeItem(
+                        item,
+                        imageUri
+                    ) // Передайте параметр imageUri и null для image
                     finishWork()
                 }
             }
         }
     }
-
-
 
 
     private fun parseText(inputName: String?): String {

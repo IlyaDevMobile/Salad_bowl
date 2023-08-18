@@ -31,7 +31,7 @@
                     android:adjustViewBounds="false"
                     android:contentDescription="@null"
                     android:scaleType="centerCrop"
-                    tools:src="@drawable/ic_emptyphoto" />
+                    tools:src="@drawable/salad" />
 
             </androidx.cardview.widget.CardView>
 
