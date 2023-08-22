@@ -177,13 +177,12 @@ class CreateRecipeActivity : AppCompatActivity() {
             galleryIntent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
             galleryLauncher.launch(galleryIntent)
         }
-        // Set the selectedImageUri to the ViewModel's LiveData
         galleryLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
                     val selectedImageUri = result.data?.data
                     selectedImageUri?.let {
-                        viewModel.setSelectedImageUri(it) // Update the ViewModel's selectedImageUri
+                        viewModel.setSelectedImageUri(it)
                         loadAndDisplayImage(it)
                     }
                 }
