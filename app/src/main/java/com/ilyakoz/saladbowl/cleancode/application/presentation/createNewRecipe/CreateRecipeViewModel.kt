@@ -88,10 +88,10 @@ class CreateRecipeViewModel @Inject constructor(
         val name = parseText(inputName)
         val ingredients = parseText(inputIngredients)
         val description = parseText(inputDescription)
-        val imageUri = parseText(inputNameImage) // Сохраняем ссылку на изображение в поле image
+        val imageUri = parseText(inputNameImage)
         val fieldsValid = validateInput(name)
         val image: Uri? =
-            _selectedImageUri.value // Получите выбранный URI изображения из LiveData
+            _selectedImageUri.value
         if (fieldsValid && image != null) {
             _recipeItem.value?.let {
                 viewModelScope.launch {
@@ -99,9 +99,9 @@ class CreateRecipeViewModel @Inject constructor(
                         name = name,
                         ingredients = ingredients,
                         description = description,
-                        imageUri = imageUri // Сохраните ссылку на изображение в поле image
+                        imageUri = imageUri
                     )
-                    editRecipeUseCase.editRecipeItem (item,imageUri)// Передайте параметр imageUri и null для image
+                    editRecipeUseCase.editRecipeItem (item,imageUri)
                     finishWork()
                 }
             }

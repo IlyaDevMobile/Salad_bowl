@@ -1,6 +1,7 @@
 package com.ilyakoz.saladbowl.cleancode.application.presentation.listRecipe
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
