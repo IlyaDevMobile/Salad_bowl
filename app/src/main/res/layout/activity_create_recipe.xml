@@ -9,7 +9,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
 
         <LinearLayout
@@ -26,7 +27,7 @@
                 app:cardCornerRadius="15dp">
 
                 <ImageView
-                    android:id="@+id/salad_imageview"
+                    android:id="@+id/saladImageView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="false"
@@ -42,7 +43,7 @@
                 style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="20dp"
                 android:fontFamily="@font/didact_gothic"
                 android:padding="10dp"
                 android:text="@string/add_photo"
@@ -52,7 +53,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="20dp"
                 android:fontFamily="@font/didact_gothic"
                 android:hint="@string/title"
                 android:padding="10dp"
@@ -73,7 +74,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="20dp"
                 android:fontFamily="@font/didact_gothic"
                 android:hint="@string/ingredients"
                 android:padding="10dp"
@@ -93,7 +94,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="20dp"
                 android:fontFamily="@font/didact_gothic"
                 android:hint="@string/description"
                 android:padding="10dp"
@@ -113,12 +114,13 @@
                 style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="20dp"
                 android:fontFamily="@font/didact_gothic"
                 android:padding="10dp"
                 android:text="@string/save"
                 android:textColor="@color/white"
                 android:textSize="16sp"
+
                 app:helperText="ingredients" />
 
             <Button
@@ -126,7 +128,7 @@
                 style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="20dp"
                 android:fontFamily="@font/didact_gothic"
                 android:padding="10dp"
                 android:text="@string/cancel"

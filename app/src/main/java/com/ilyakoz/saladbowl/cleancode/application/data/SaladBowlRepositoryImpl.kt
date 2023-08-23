@@ -15,49 +15,48 @@ import java.io.FileOutputStream
 
 class SaladBowlRepositoryImpl(application: Application) : SaladBowlRepository {
 
-    private val applicationContext = application.applicationContext
+//    private val applicationContext = application.applicationContext
     private val recipeItemDao = AppDatabase.getInstance(application).recipeItemDao()
     private val mapper = SaladBowlMapper()
 
-    override suspend fun addRecipe(recipeItem: RecipeItem, imageUri: Uri) {
-        val imageFileName = saveImageToFile(imageUri)
-        val dbModel = mapper.mapEntityDbModel(recipeItem, imageFileName)
+    override suspend fun addRecipe(recipeItem: RecipeItem) {
+        val dbModel = mapper.mapEntityDbModel(recipeItem)
         recipeItemDao.addRecipe(dbModel)
     }
 
-    private suspend fun saveImageToFile(imageUri: Uri): String {
-        return withContext(Dispatchers.IO) {
-            val targetFile =
-                File(applicationContext.cacheDir, "images/${System.currentTimeMillis()}.jpg")
-
-            try {
-                val downloadedFile = Glide.with(applicationContext)
-                    .downloadOnly()
-                    .load(imageUri)
-                    .submit()
-                    .get()
-
-                val inputStream = FileInputStream(downloadedFile)
-                val outputStream = FileOutputStream(targetFile)
-                inputStream.use { input ->
-                    outputStream.use { output ->
-                        input.copyTo(output)
-                    }
-                }
-            } catch (e: Exception) {
-                // Обработайте исключение, если что-то пойдет не так при загрузке изображения
-            }
-
-            return@withContext targetFile.absolutePath
-        }
-    }
+//    private suspend fun saveImageToFile(imageUri: Uri): String {
+//        return withContext(Dispatchers.IO) {
+//            val targetFile =
+//                File(applicationContext.cacheDir, "images/${System.currentTimeMillis()}.jpg")
+//
+//            try {
+//                val downloadedFile = Glide.with(applicationContext)
+//                    .downloadOnly()
+//                    .load(imageUri)
+//                    .submit()
+//                    .get()
+//
+//                val inputStream = FileInputStream(downloadedFile)
+//                val outputStream = FileOutputStream(targetFile)
+//                inputStream.use { input ->
+//                    outputStream.use { output ->
+//                        input.copyTo(output)
+//                    }
+//                }
+//            } catch (e: Exception) {
+//                // Обработайте исключение, если что-то пойдет не так при загрузке изображения
+//            }
+//
+//            return@withContext targetFile.absolutePath
+//        }
+//    }
 
     override suspend fun deleteRecipe(recipeItem: RecipeItem) {
         recipeItemDao.deleteRecipe(recipeItem.id)
     }
 
-    override suspend fun editRecipe(recipeItem: RecipeItem, imageUri: String) {
-        recipeItemDao.addRecipe(mapper.mapEntityDbModel(recipeItem, imageUri = imageUri))
+    override suspend fun editRecipe(recipeItem: RecipeItem) {
+        recipeItemDao.addRecipe(mapper.mapEntityDbModel(recipeItem))
     }
 
     override suspend fun getRecipe(recipeItemId: Int): RecipeItem {
