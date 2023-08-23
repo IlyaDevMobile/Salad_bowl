@@ -4,7 +4,7 @@ import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 
 class SaladBowlMapper {
 
-    fun mapEntityDbModel(recipeItem: RecipeItem, imageUri: String?) = RecipeItemDbModel(
+    fun mapEntityDbModel(recipeItem: RecipeItem) = RecipeItemDbModel(
         id = recipeItem.id,
         name = recipeItem.name,
         ingredients = recipeItem.ingredients,

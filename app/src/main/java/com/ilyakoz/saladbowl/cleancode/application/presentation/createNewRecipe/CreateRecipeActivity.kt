@@ -1,22 +1,21 @@
 package com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe
 
-import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
-import androidx.activity.result.ActivityResultLauncher
+import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.ilyakoz.saladbowl.R
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 import com.ilyakoz.saladbowl.databinding.ActivityCreateRecipeBinding
@@ -26,11 +25,10 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class CreateRecipeActivity : AppCompatActivity() {
 
-    private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
-
 
     private lateinit var binding: ActivityCreateRecipeBinding
     private val viewModel: CreateRecipeViewModel by viewModels()
+
 
     private var screenMode = MODE_UNKNOWN
     private var recipeItemId = RecipeItem.UNDEFINED_ID
@@ -43,23 +41,12 @@ class CreateRecipeActivity : AppCompatActivity() {
         closeCancelActivity()
         selectModeActivity()
         checkErrorName()
-        setupGalleryLauncher()
-        setupAddImageViewBtn()
         viewModel.shouldCloseScreen.observe(this) {
             finish()
         }
-    }
-
-    private fun loadAndDisplayImage(imageUri: Uri) {
-        Glide.with(this)
-            .asBitmap()
-            .load(imageUri)
-            .centerCrop()
-            .into(object : BitmapImageViewTarget(binding.saladImageview) {
-                override fun setResource(resource: Bitmap?) {
-                    binding.saladImageview.setImageBitmap(resource)
-                }
-            })
+        binding.AddImageViewBtn.setOnClickListener {
+            openGalleryOrCamera()
+        }
     }
 
 
@@ -108,11 +95,15 @@ class CreateRecipeActivity : AppCompatActivity() {
                 val name = titleFld?.text?.toString()
                 val ingredients = ingredientsFld?.text?.toString()
                 val description = descriptionFld?.text?.toString()
-                val image = viewModel.selectedImageUri.value?.toString()
 
 
                 viewModel.viewModelScope.launch {
-                    viewModel.addRecipeItem(name, ingredients, description, image)
+                    viewModel.addRecipeItem(
+                        name,
+                        ingredients,
+                        description,
+                        viewModel.selectedImageUri.value?.toString()
+                    )
                 }
             }
         }
@@ -126,9 +117,9 @@ class CreateRecipeActivity : AppCompatActivity() {
                 binding.ingredientsFld.setText(recipeItem.ingredients)
                 binding.descriptionFld.setText(recipeItem.description)
 
-                // Загрузите и отобразите изображение, если оно есть в объекте recipeItem
                 recipeItem.imageUri?.let { imageUriString ->
                     val imageUri = Uri.parse(imageUriString)
+                    Log.d("ImageUriDebug", "Loaded image URI: $imageUri")
                     loadAndDisplayImage(imageUri)
                 }
 
@@ -144,49 +135,18 @@ class CreateRecipeActivity : AppCompatActivity() {
                 val name = titleFld?.text?.toString()
                 val ingredients = ingredientsFld?.text?.toString()
                 val description = descriptionFld?.text?.toString()
-                val image = viewModel.selectedImageUri.value?.toString() // Получите ссылку на изображение
+                val imageUri = viewModel.selectedImageUri.value?.toString()
 
                 viewModel.viewModelScope.launch {
                     viewModel.editRecipeItem(
                         name,
                         ingredients,
                         description,
-                        image
-                    ) // Передайте параметр image
+                        imageUri ?: viewModel.recipeItem.value?.imageUri
+                    )
                 }
             }
         }
-    }
-
-
-    private fun setupGalleryLauncher() {
-        galleryLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == Activity.RESULT_OK) {
-                    val selectedImageUri = result.data?.data
-                    selectedImageUri?.let {
-                        loadAndDisplayImage(it)
-                    }
-                }
-            }
-    }
-
-    private fun setupAddImageViewBtn() {
-        binding.AddImageViewBtn.setOnClickListener {
-            val galleryIntent = Intent(Intent.ACTION_PICK)
-            galleryIntent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-            galleryLauncher.launch(galleryIntent)
-        }
-        galleryLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == Activity.RESULT_OK) {
-                    val selectedImageUri = result.data?.data
-                    selectedImageUri?.let {
-                        viewModel.setSelectedImageUri(it)
-                        loadAndDisplayImage(it)
-                    }
-                }
-            }
     }
 
 
@@ -204,6 +164,30 @@ class CreateRecipeActivity : AppCompatActivity() {
             }
         }
     }
+
+    private val launcher = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { result ->
+        if (result != null) {
+            viewModel.selectedImageUri.postValue(result)  // Устанавливаем значение в ViewModel
+            Glide.with(this).load(result).into(binding.saladImageView)
+        }
+    }
+
+    private fun openGalleryOrCamera() {
+        try {
+            launcher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        } catch (e: ActivityNotFoundException) {
+            // Handle the case where the picker is not available
+            Toast.makeText(this, "Photo picker not available", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    private fun loadAndDisplayImage(imageUri: Uri) {
+        Glide.with(this)
+            .load(imageUri)
+            .into(binding.saladImageView)
+    }
+
 
 
     companion object {
@@ -226,6 +210,7 @@ class CreateRecipeActivity : AppCompatActivity() {
             intent.putExtra(EXTRA_RECIPE_ITEM_ID, recipeItemId)
             return intent
         }
+
 
     }
 }

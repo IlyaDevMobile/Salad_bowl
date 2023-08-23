@@ -5,9 +5,9 @@ import androidx.lifecycle.LiveData
 
 interface SaladBowlRepository {
 
-   suspend fun addRecipe(recipeItem: RecipeItem, imageUri: Uri)
+   suspend fun addRecipe(recipeItem: RecipeItem)
    suspend fun deleteRecipe(recipeItem: RecipeItem)
-   suspend fun editRecipe(recipeItem: RecipeItem, imageUri: String)
+   suspend fun editRecipe(recipeItem: RecipeItem)
    suspend fun getRecipe(recipeItemId: Int) : RecipeItem
 
 

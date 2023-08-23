@@ -34,21 +34,22 @@ class CreateRecipeViewModel @Inject constructor(
         get() = _shouldCloseScreen
 
     private val _selectedImageUri = MutableLiveData<Uri>()
-    val selectedImageUri: LiveData<Uri>
+    val selectedImageUri: MutableLiveData <Uri>
         get() = _selectedImageUri
-
-    suspend fun getRecipeItem(recipeItemId: Int) {
-        val item = getRecipeItemUseCase.getRecipeItem(recipeItemId)
-        _recipeItem.value = item
-    }
 
     fun setSelectedImageUri(uri: Uri) {
         _selectedImageUri.value = uri
     }
 
 
-    private val defaultImageUri =
-        Uri.parse("android.resource://${com.ilyakoz.saladbowl.R.drawable.ic_emptyphoto}")
+    suspend fun getRecipeItem(recipeItemId: Int) {
+        val item = getRecipeItemUseCase.getRecipeItem(recipeItemId)
+        _recipeItem.value = item
+    }
+
+
+//    private val defaultImageUri =
+//        Uri.parse("android.resource://${com.ilyakoz.saladbowl.R.drawable.ic_emptyphoto}")
 
 
     suspend fun addRecipeItem(
@@ -60,23 +61,21 @@ class CreateRecipeViewModel @Inject constructor(
         val name = parseText(inputName)
         val ingredients = parseText(inputIngredients)
         val description = parseText(inputDescription)
+        val imageUri = selectedImageUri.value.toString()
         val fieldsValid = validateInput(name)
         if (fieldsValid) {
             viewModelScope.launch {
-                val imageUri = selectedImageUri.value ?: defaultImageUri
                 val recipeItem = RecipeItem(
                     name,
                     ingredients,
                     description,
-                    imageUri.toString(),
+                    imageUri,
                 )
-                addRecipeUseCase.addRecipeItem(recipeItem, imageUri)
+                addRecipeUseCase.addRecipeItem(recipeItem)
                 finishWork()
             }
         }
     }
-
-
 
 
     suspend fun editRecipeItem(
@@ -88,20 +87,18 @@ class CreateRecipeViewModel @Inject constructor(
         val name = parseText(inputName)
         val ingredients = parseText(inputIngredients)
         val description = parseText(inputDescription)
-        val imageUri = parseText(inputNameImage)
+        val imageUri = inputNameImage
         val fieldsValid = validateInput(name)
-        val image: Uri? =
-            _selectedImageUri.value
-        if (fieldsValid && image != null) {
+        if (fieldsValid) {
             _recipeItem.value?.let {
                 viewModelScope.launch {
                     val item = it.copy(
                         name = name,
                         ingredients = ingredients,
                         description = description,
-                        imageUri = imageUri
+                        imageUri = inputNameImage
                     )
-                    editRecipeUseCase.editRecipeItem (item,imageUri)
+                    editRecipeUseCase.editRecipeItem(item)
                     finishWork()
                 }
             }
@@ -112,6 +109,11 @@ class CreateRecipeViewModel @Inject constructor(
     private fun parseText(inputName: String?): String {
         return inputName?.trim() ?: ""
     }
+
+//    private fun parseImage(inputNameImage: String?): String {
+//        return inputNameImage ?: defaultImageUri.toString()
+//    }
+
 
     private fun validateInput(name: String): Boolean {
         var result = true
@@ -129,5 +131,10 @@ class CreateRecipeViewModel @Inject constructor(
     private fun finishWork() {
         _shouldCloseScreen.value = Unit
     }
+
+
+
+
+
 
 }
