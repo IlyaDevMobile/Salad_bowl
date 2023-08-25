@@ -34,22 +34,16 @@ class CreateRecipeViewModel @Inject constructor(
         get() = _shouldCloseScreen
 
     private val _selectedImageUri = MutableLiveData<Uri>()
-    val selectedImageUri: MutableLiveData <Uri>
+    val selectedImageUri: MutableLiveData<Uri>
         get() = _selectedImageUri
 
-    fun setSelectedImageUri(uri: Uri) {
-        _selectedImageUri.value = uri
-    }
+
 
 
     suspend fun getRecipeItem(recipeItemId: Int) {
         val item = getRecipeItemUseCase.getRecipeItem(recipeItemId)
         _recipeItem.value = item
     }
-
-
-//    private val defaultImageUri =
-//        Uri.parse("android.resource://${com.ilyakoz.saladbowl.R.drawable.ic_emptyphoto}")
 
 
     suspend fun addRecipeItem(
@@ -131,10 +125,6 @@ class CreateRecipeViewModel @Inject constructor(
     private fun finishWork() {
         _shouldCloseScreen.value = Unit
     }
-
-
-
-
 
 
 }

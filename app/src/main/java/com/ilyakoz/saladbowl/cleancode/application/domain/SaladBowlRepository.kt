@@ -1,6 +1,5 @@
 package com.ilyakoz.saladbowl.cleancode.application.domain
 
-import android.net.Uri
 import androidx.lifecycle.LiveData
 
 interface SaladBowlRepository {
