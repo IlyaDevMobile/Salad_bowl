@@ -38,8 +38,6 @@ class CreateRecipeViewModel @Inject constructor(
         get() = _selectedImageUri
 
 
-
-
     suspend fun getRecipeItem(recipeItemId: Int) {
         val item = getRecipeItemUseCase.getRecipeItem(recipeItemId)
         _recipeItem.value = item
@@ -103,6 +101,7 @@ class CreateRecipeViewModel @Inject constructor(
     private fun parseText(inputName: String?): String {
         return inputName?.trim() ?: ""
     }
+
 
 //    private fun parseImage(inputNameImage: String?): String {
 //        return inputNameImage ?: defaultImageUri.toString()
