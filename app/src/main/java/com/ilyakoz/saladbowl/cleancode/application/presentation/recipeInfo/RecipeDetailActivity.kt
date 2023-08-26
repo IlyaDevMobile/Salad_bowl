@@ -61,7 +61,7 @@ class RecipeDetailActivity : AppCompatActivity() {
 
     private fun openEditActivity() {
         binding.editButton.setOnClickListener {
-            val intent = CreateRecipeActivity.newIntentEditItem(this, it.id)
+            val intent = CreateRecipeActivity.newIntentEditItem(this,recipeItemId)
             startActivity(intent)
         }
     }

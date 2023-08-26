@@ -10,7 +10,7 @@ data class RecipeItemDbModel(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val name: String,
-    val ingredients: String,
+    val ingredients: String?,
     val description: String?,
     val imageUri: String?
 

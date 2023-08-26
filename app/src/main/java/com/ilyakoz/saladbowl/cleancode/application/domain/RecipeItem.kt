@@ -4,7 +4,7 @@ package com.ilyakoz.saladbowl.cleancode.application.domain
 data class RecipeItem(
 
     val name: String,
-    val ingredients: String,
+    val ingredients: String?,
     val description: String?,
     val imageUri: String?,
     var id: Int = UNDEFINED_ID
