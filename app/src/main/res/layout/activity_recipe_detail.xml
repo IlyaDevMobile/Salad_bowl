@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecipeDetailActivity">
+    tools:context=".cleancode.application.presentation.recipeInfo.RecipeDetailActivity">
 
 
     <ScrollView
@@ -82,7 +82,7 @@
                 android:textSize="16sp" />
 
             <Button
-                android:id="@+id/deleteButton"
+                android:id="@+id/cancel_button"
                 style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

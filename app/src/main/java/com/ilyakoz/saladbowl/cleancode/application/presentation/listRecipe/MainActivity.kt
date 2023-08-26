@@ -7,7 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.GridLayoutManager
-import com.ilyakoz.saladbowl.RecipeDetailActivity
+import com.ilyakoz.saladbowl.cleancode.application.presentation.recipeInfo.RecipeDetailActivity
 import com.ilyakoz.saladbowl.cleancode.application.presentation.adapter.SaladBowlAdapter
 import com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe.CreateRecipeActivity
 import com.ilyakoz.saladbowl.databinding.ActivityMainBinding
