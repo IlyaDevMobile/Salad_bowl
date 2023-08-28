@@ -22,4 +22,12 @@
         <item name="colorAccent">@android:color/white</item>
     </style>
 
+    <style name="TextViewStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/mainTextColor</item>
+
+
+    </style>
+
 </resources>

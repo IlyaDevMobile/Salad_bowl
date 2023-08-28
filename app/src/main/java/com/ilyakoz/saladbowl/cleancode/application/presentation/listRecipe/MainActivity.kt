@@ -38,8 +38,8 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        binding.searchIcon.setOnClickListener {
-        }
+        //binding.searchIcon.setOnClickListener {
+        //}
 
 
         binding.addNewRecipeBtn.setOnClickListener {
