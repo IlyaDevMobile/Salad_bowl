@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [RecipeItemDbModel::class], version = 2, exportSchema = false)
+@Database(entities = [RecipeItemDbModel::class], version = 3, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun recipeItemDao(): RecipeItemDao
@@ -14,7 +14,7 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         private var INSTANCE: AppDatabase? = null
         private val LOCK = Any()
-        private const val DB_NAME = "recipe_item2.db"
+        private const val DB_NAME = "recipe_item3.db"
 
         fun getInstance(application: Application): AppDatabase {
             INSTANCE?.let {

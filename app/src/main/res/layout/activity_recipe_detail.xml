@@ -1,9 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecipeDetailActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    tools:context=".cleancode.application.presentation.recipeInfo.RecipeDetailActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                app:strokeColor="@color/green">
+
+                <ImageView
+                    android:id="@+id/saladImageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="false"
+                    android:contentDescription="jjj"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/salad" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Название"
+                android:textColor="@color/green"
+                android:textSize="35sp" />
+
+            <TextView
+                android:id="@+id/NameingredientsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:gravity="center"
+                android:padding="15dp"
+
+                android:text="Ингридиенты:"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/ingredientsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Название"
+                android:textColor="@color/green"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/NamedescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text="Описание:"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/descriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Название"
+                android:textColor="@color/green"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/editButton"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:padding="10dp"
+                android:text="Edit"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/cancel_button"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:padding="10dp"
+                android:text="@string/cancel"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -18,6 +18,7 @@ import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
 import com.ilyakoz.saladbowl.R
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
+import com.ilyakoz.saladbowl.cleancode.application.presentation.listRecipe.MainActivity
 import com.ilyakoz.saladbowl.databinding.ActivityCreateRecipeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -144,8 +145,14 @@ class CreateRecipeActivity : AppCompatActivity() {
                         description,
                         imageUri ?: viewModel.recipeItem.value?.imageUri
                     )
+
+                    val intent = MainActivity.newIntentListRecipeActivity(this@CreateRecipeActivity)
+                    startActivity(intent)
                 }
+
+
             }
+
         }
     }
 
@@ -165,12 +172,13 @@ class CreateRecipeActivity : AppCompatActivity() {
         }
     }
 
-    private val launcher = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { result ->
-        if (result != null) {
-            viewModel.selectedImageUri.postValue(result)  // Устанавливаем значение в ViewModel
-            Glide.with(this).load(result).into(binding.saladImageView)
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { result ->
+            if (result != null) {
+                viewModel.selectedImageUri.postValue(result)  // Устанавливаем значение в ViewModel
+                Glide.with(this).load(result).into(binding.saladImageView)
+            }
         }
-    }
 
     private fun openGalleryOrCamera() {
         try {
@@ -187,7 +195,6 @@ class CreateRecipeActivity : AppCompatActivity() {
             .load(imageUri)
             .into(binding.saladImageView)
     }
-
 
 
     companion object {

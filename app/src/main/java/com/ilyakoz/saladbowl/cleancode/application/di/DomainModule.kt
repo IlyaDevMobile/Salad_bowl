@@ -18,28 +18,29 @@ class DomainModule {
 
 
     @Provides
-    fun provideAddRecipeUseCase(saladBowlRepository: SaladBowlRepository) : AddRecipeUseCase{
+    fun provideAddRecipeUseCase(saladBowlRepository: SaladBowlRepository): AddRecipeUseCase {
         return AddRecipeUseCase(saladBowlRepository)
     }
+
     @Provides
-    fun provideDeleteRecipeUseCase(saladBowlRepository: SaladBowlRepository) : DeleteRecipeUseCase{
+    fun provideDeleteRecipeUseCase(saladBowlRepository: SaladBowlRepository): DeleteRecipeUseCase {
         return DeleteRecipeUseCase(saladBowlRepository)
     }
+
     @Provides
-    fun provideEditRecipeUseCase(saladBowlRepository: SaladBowlRepository) : EditRecipeUseCase {
+    fun provideEditRecipeUseCase(saladBowlRepository: SaladBowlRepository): EditRecipeUseCase {
         return EditRecipeUseCase(saladBowlRepository)
     }
+
     @Provides
-    fun provideGetListRecipeUseCase(saladBowlRepository: SaladBowlRepository) : GetListRecipeUseCase{
+    fun provideGetListRecipeUseCase(saladBowlRepository: SaladBowlRepository): GetListRecipeUseCase {
         return GetListRecipeUseCase(saladBowlRepository)
-    }@Provides
-    fun provideGetRecipeItemUseCase(saladBowlRepository: SaladBowlRepository) : GetRecipeItemUseCase{
+    }
+
+    @Provides
+    fun provideGetRecipeItemUseCase(saladBowlRepository: SaladBowlRepository): GetRecipeItemUseCase {
         return GetRecipeItemUseCase(saladBowlRepository)
     }
 
-//    @Provides
-//    fun provideSaveImageToFileUseCase(saladBowlRepository: SaladBowlRepository) : SaveImageToFileUseCase{
-//        return SaveImageToFileUseCase(saladBowlRepository)
-//    }
 
 }

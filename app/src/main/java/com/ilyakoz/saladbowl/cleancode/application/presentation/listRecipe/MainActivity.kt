@@ -1,11 +1,15 @@
 package com.ilyakoz.saladbowl.cleancode.application.presentation.listRecipe
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.GridLayoutManager
+import com.ilyakoz.saladbowl.cleancode.application.presentation.recipeInfo.RecipeDetailActivity
 import com.ilyakoz.saladbowl.cleancode.application.presentation.adapter.SaladBowlAdapter
 import com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe.CreateRecipeActivity
 import com.ilyakoz.saladbowl.databinding.ActivityMainBinding
@@ -57,16 +61,42 @@ class MainActivity : AppCompatActivity() {
 
     private fun deleteRecipeItem() {
         adapter.onRecipeItemLongClickListener = { recipeItem ->
-            viewModel.viewModelScope.launch {
-                viewModel.deleteRecipeItem(recipeItem)
+            val alertDialogBuilder = AlertDialog.Builder(this)
+            alertDialogBuilder.setTitle("Delete Recipe")
+            alertDialogBuilder.setMessage("Are you sure you want to delete this recipe?")
+            alertDialogBuilder.setPositiveButton("Yes") { dialog,_ ->
+                viewModel.viewModelScope.launch {
+                    viewModel.deleteRecipeItem(recipeItem)
+                }
+                dialog.dismiss()
             }
+            alertDialogBuilder.setNegativeButton("No") {dialog,_ ->
+                dialog.dismiss()
+            }
+            val alertDialog = alertDialogBuilder.create()
+            alertDialog.show()
+
         }
     }
 
-    private fun getRecipeItem() {
+//    private fun getRecipeItem() {
+//        adapter.onRecipeItemClickListener = {
+//            val intent = CreateRecipeActivity.newIntentEditItem(this, it.id)
+//            startActivity(intent)
+//        }
+//    }
+
+    private fun getRecipeItem(){
         adapter.onRecipeItemClickListener = {
-            val intent = CreateRecipeActivity.newIntentEditItem(this, it.id)
+            val intent = RecipeDetailActivity.newIntentShowDetailRecipe(this, it.id)
             startActivity(intent)
+        }
+    }
+    companion object {
+
+
+        fun newIntentListRecipeActivity(context: Context): Intent {
+            return Intent(context, MainActivity::class.java)
         }
     }
 }
