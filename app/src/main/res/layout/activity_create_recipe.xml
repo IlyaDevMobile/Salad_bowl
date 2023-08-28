@@ -19,11 +19,9 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                app:cardCornerRadius="15dp">
+                android:layout_gravity="center">
 
                 <ImageView
                     android:id="@+id/saladImageView"
@@ -43,7 +41,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:fontFamily="@font/didact_gothic"
                 android:padding="10dp"
                 android:text="@string/add_photo"
                 android:textColor="@color/white"
@@ -53,7 +50,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:fontFamily="@font/didact_gothic"
                 android:hint="@string/title"
                 android:padding="10dp"
                 app:counterEnabled="true"
@@ -65,8 +61,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/title_fld"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/didact_gothic" />
+                    android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,19 +69,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:fontFamily="@font/didact_gothic"
                 android:hint="@string/ingredients"
                 android:padding="10dp"
-
                 app:endIconMode="clear_text"
                 app:helperText="ingredients">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ingredients_Fld"
-
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/didact_gothic" />
+                    android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +85,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:fontFamily="@font/didact_gothic"
                 android:hint="@string/description"
                 android:padding="10dp"
                 app:endIconMode="clear_text"
@@ -103,9 +93,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/description_Fld"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/didact_gothic" />
-
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -114,12 +102,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:fontFamily="@font/didact_gothic"
                 android:padding="10dp"
                 android:text="@string/save"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-
                 app:helperText="ingredients" />
 
             <Button
@@ -128,7 +114,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:fontFamily="@font/didact_gothic"
                 android:padding="10dp"
                 android:text="@string/cancel"
                 android:textColor="@color/white"

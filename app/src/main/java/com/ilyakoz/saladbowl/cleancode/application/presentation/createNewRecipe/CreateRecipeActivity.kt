@@ -151,7 +151,6 @@ class CreateRecipeActivity : AppCompatActivity() {
                 }
 
 
-
             }
 
         }
@@ -173,12 +172,13 @@ class CreateRecipeActivity : AppCompatActivity() {
         }
     }
 
-    private val launcher = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { result ->
-        if (result != null) {
-            viewModel.selectedImageUri.postValue(result)  // Устанавливаем значение в ViewModel
-            Glide.with(this).load(result).into(binding.saladImageView)
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { result ->
+            if (result != null) {
+                viewModel.selectedImageUri.postValue(result)  // Устанавливаем значение в ViewModel
+                Glide.with(this).load(result).into(binding.saladImageView)
+            }
         }
-    }
 
     private fun openGalleryOrCamera() {
         try {
@@ -195,7 +195,6 @@ class CreateRecipeActivity : AppCompatActivity() {
             .load(imageUri)
             .into(binding.saladImageView)
     }
-
 
 
     companion object {

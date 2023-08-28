@@ -33,10 +33,11 @@ class RecipeDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRecipeDetailBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
-        closeCancelActivity()
-        openEditActivity()
         parseIntent()
+        closeCancelActivity()
         launchInfoMode()
+        openEditActivity()
+
 
 
     }
@@ -61,7 +62,7 @@ class RecipeDetailActivity : AppCompatActivity() {
 
     private fun openEditActivity() {
         binding.editButton.setOnClickListener {
-            val intent = CreateRecipeActivity.newIntentEditItem(this,recipeItemId)
+            val intent = CreateRecipeActivity.newIntentEditItem(this, recipeItemId)
             startActivity(intent)
         }
     }
@@ -80,13 +81,13 @@ class RecipeDetailActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
+
 
     private fun loadAndDisplayImage(imageUri: Uri) {
         Glide.with(this)
             .load(imageUri)
-            .into(binding.saladImageView)
+            .into(binding.saladImageView2)
     }
 
     private fun closeCancelActivity() {
