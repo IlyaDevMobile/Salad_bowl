@@ -38,9 +38,6 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        binding.searchIcon.setOnClickListener {
-        }
-
 
         binding.addNewRecipeBtn.setOnClickListener {
             val intent = CreateRecipeActivity.newIntentAddItem(this)
@@ -64,13 +61,13 @@ class MainActivity : AppCompatActivity() {
             val alertDialogBuilder = AlertDialog.Builder(this)
             alertDialogBuilder.setTitle("Delete Recipe")
             alertDialogBuilder.setMessage("Are you sure you want to delete this recipe?")
-            alertDialogBuilder.setPositiveButton("Yes") { dialog,_ ->
+            alertDialogBuilder.setPositiveButton("Yes") { dialog, _ ->
                 viewModel.viewModelScope.launch {
                     viewModel.deleteRecipeItem(recipeItem)
                 }
                 dialog.dismiss()
             }
-            alertDialogBuilder.setNegativeButton("No") {dialog,_ ->
+            alertDialogBuilder.setNegativeButton("No") { dialog, _ ->
                 dialog.dismiss()
             }
             val alertDialog = alertDialogBuilder.create()
@@ -79,19 +76,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    private fun getRecipeItem() {
-//        adapter.onRecipeItemClickListener = {
-//            val intent = CreateRecipeActivity.newIntentEditItem(this, it.id)
-//            startActivity(intent)
-//        }
-//    }
 
-    private fun getRecipeItem(){
+    private fun getRecipeItem() {
         adapter.onRecipeItemClickListener = {
             val intent = RecipeDetailActivity.newIntentShowDetailRecipe(this, it.id)
             startActivity(intent)
         }
     }
+
     companion object {
 
 

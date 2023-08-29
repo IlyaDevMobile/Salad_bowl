@@ -110,7 +110,7 @@ class CreateRecipeViewModel @Inject constructor(
 
     private fun validateInput(name: String): Boolean {
         var result = true
-        if (name.isBlank()) {
+        if (name.isBlank() || name.length > 20) {
             _errorInputName.value = true
             result = false
         }

@@ -3,4 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#64DD17</color>
+    <color name="mainTextColor">#04356C</color>
+    <color name="mainBackgroundColor">@color/white</color>
+    <color name="buttonColor">#4186D3</color>
 </resources>

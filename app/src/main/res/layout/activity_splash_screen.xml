@@ -4,30 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@color/black"
     android:gravity="center"
+    android:background="@color/buttonColor"
     android:layout_height="match_parent"
     tools:context=".cleancode.application.presentation.SplashScreenActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@null"
-        android:alpha="0.5"
-        android:scaleType="centerCrop"
-        android:src="@drawable/splash_screen" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:contentDescription="@null"-->
+<!--        android:alpha="0.5"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:src="@drawable/splash_screen" />-->
 
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SALAD BOWL"
+        android:text="@string/app_name"
         android:textColor="@color/white"
         android:textSize="36sp"
-        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
