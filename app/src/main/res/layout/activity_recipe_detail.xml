@@ -42,55 +42,33 @@
                 android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Название"
-                android:textAllCaps="true"
                 android:layout_margin="10dp"
+                android:gravity="center"
                 android:padding="10dp"
+                android:text="Название"
                 android:textColor="@color/mainTextColor"
                 android:textSize="35sp"
                 android:textStyle="italic" />
 
-            <TextView
-                android:id="@+id/NameingredientsTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:gravity="left"
-                android:padding="15dp"
-
-                android:text="Ингридиенты:"
-                android:textColor="@color/mainTitleTextColor"
-                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/ingredientsTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:gravity="left"
-                android:text="Название"
+                android:gravity="center"
+                android:text="Ingredients"
                 android:textColor="@color/mainTextColor"
                 android:textSize="15sp" />
 
-            <TextView
-                android:id="@+id/NamedescriptionTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:gravity="left"
-                android:padding="15dp"
-                android:text="Описание:"
-                android:textColor="@color/mainTitleTextColor"
-                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/descriptionTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:gravity="left"
-                android:text="Название"
+                android:gravity="center"
+                android:text="Description"
                 android:textColor="@color/mainTextColor"
                 android:textSize="15sp" />
 
@@ -99,26 +77,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:backgroundTint="@color/mainTextColor"
+                android:backgroundTint="@color/buttonColor"
                 android:padding="10dp"
                 android:text="Edit"
                 android:textColor="@color/mainBackgroundColor"
                 android:textSize="16sp"
-                app:shapeAppearanceOverlay="@style/RoundedShapeAppearanceOverlay"
-                app:strokeColor="@color/mainTextColor" />
+                app:shapeAppearanceOverlay="@style/RoundedShapeAppearanceOverlay" />
 
             <Button
                 android:id="@+id/cancel_button"
-                android:text="@string/cancel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:backgroundTint="@color/mainTextColor"
+                android:backgroundTint="@color/buttonColor"
                 android:padding="10dp"
+                android:text="@string/cancel"
                 android:textColor="@color/mainBackgroundColor"
                 android:textSize="16sp"
-                app:shapeAppearanceOverlay="@style/RoundedShapeAppearanceOverlay"
-                app:strokeColor="@color/mainTextColor" />
+                app:shapeAppearanceOverlay="@style/RoundedShapeAppearanceOverlay" />
 
 
         </LinearLayout>
