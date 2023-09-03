@@ -33,7 +33,7 @@
                     android:adjustViewBounds="false"
                     android:contentDescription="@null"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/baseline_photo_camera_24" />
+                    android:src="@drawable/baseline_image_24" />
 
             </androidx.cardview.widget.CardView>
 
@@ -68,6 +68,7 @@
                 app:helperText="Title"
                 app:helperTextTextColor="@color/mainTextColor"
                 app:hintTextColor="@color/mainTextColor"
+                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                 app:layout_constraintVertical_chainStyle="packed"
                 app:shapeAppearanceOverlay="@style/RoundedShapeAppearanceOverlay">
 
@@ -98,6 +99,7 @@
                 app:endIconTint="@color/mainTextColor"
                 app:errorIconTint="@color/mainTextColor"
                 app:helperText="ingredients"
+                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                 app:helperTextTextColor="@color/mainTextColor"
                 app:hintTextColor="@color/mainTextColor"
                 app:shapeAppearanceOverlay="@style/RoundedShapeAppearanceOverlay">
@@ -123,6 +125,7 @@
                 app:endIconTint="@color/mainTextColor"
                 app:errorIconTint="@color/mainTextColor"
                 app:helperText="description"
+                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                 app:helperTextTextColor="@color/mainTextColor"
                 app:hintTextColor="@color/mainTextColor"
                 app:shapeAppearanceOverlay="@style/RoundedShapeAppearanceOverlay">
