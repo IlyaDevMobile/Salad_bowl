@@ -7,6 +7,6 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="salad">Salad</string>
-    <string name="error_input_count">Error</string>
+    <string name="error_input_count">Title is missing</string>
     <string name="add_photo">Add Photo</string>
 </resources>

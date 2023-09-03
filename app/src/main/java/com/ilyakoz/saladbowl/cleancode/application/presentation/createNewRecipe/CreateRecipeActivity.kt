@@ -57,7 +57,6 @@ class CreateRecipeActivity : AppCompatActivity() {
                 getString(R.string.error_input_count)
             } else {
                 null
-
             }
             binding.titleFld.error = message
         }
@@ -96,7 +95,6 @@ class CreateRecipeActivity : AppCompatActivity() {
                 val name = titleFld?.text?.toString()
                 val ingredients = ingredientsFld?.text?.toString()
                 val description = descriptionFld?.text?.toString()
-
 
                 viewModel.viewModelScope.launch {
                     viewModel.addRecipeItem(
@@ -145,17 +143,12 @@ class CreateRecipeActivity : AppCompatActivity() {
                         description,
                         imageUri ?: viewModel.recipeItem.value?.imageUri
                     )
-
                     val intent = MainActivity.newIntentListRecipeActivity(this@CreateRecipeActivity)
                     startActivity(intent)
                 }
-
-
             }
-
         }
     }
-
 
     private fun parseIntent() {
         val mode = intent.getStringExtra(EXTRA_SCREEN_MODE)
@@ -175,7 +168,7 @@ class CreateRecipeActivity : AppCompatActivity() {
     private val launcher =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { result ->
             if (result != null) {
-                viewModel.selectedImageUri.postValue(result)  // Устанавливаем значение в ViewModel
+                viewModel.selectedImageUri.postValue(result)
                 Glide.with(this).load(result).into(binding.saladImageView)
             }
         }
@@ -184,18 +177,15 @@ class CreateRecipeActivity : AppCompatActivity() {
         try {
             launcher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         } catch (e: ActivityNotFoundException) {
-            // Handle the case where the picker is not available
             Toast.makeText(this, "Photo picker not available", Toast.LENGTH_SHORT).show()
         }
     }
-
 
     private fun loadAndDisplayImage(imageUri: Uri) {
         Glide.with(this)
             .load(imageUri)
             .into(binding.saladImageView)
     }
-
 
     companion object {
 
