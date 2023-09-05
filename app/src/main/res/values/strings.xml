@@ -3,7 +3,8 @@
     <string name="todo">todo\n</string>
     <string name="title">Title</string>
     <string name="ingredients">ingredients</string>
-    <string name="description">description</string>
+    <string name="description">recipe</string>
+    <string name="Time">time</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="salad">Salad</string>

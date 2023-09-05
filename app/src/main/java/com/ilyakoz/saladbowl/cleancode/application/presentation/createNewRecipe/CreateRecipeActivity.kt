@@ -95,12 +95,14 @@ class CreateRecipeActivity : AppCompatActivity() {
                 val name = titleFld?.text?.toString()
                 val ingredients = ingredientsFld?.text?.toString()
                 val description = descriptionFld?.text?.toString()
+                val time = timeFld?.text?.toString()
 
                 viewModel.viewModelScope.launch {
                     viewModel.addRecipeItem(
                         name,
                         ingredients,
                         description,
+                        time,
                         viewModel.selectedImageUri.value?.toString()
                     )
                 }
@@ -115,6 +117,8 @@ class CreateRecipeActivity : AppCompatActivity() {
                 binding.titleFld.setText(recipeItem.name)
                 binding.ingredientsFld.setText(recipeItem.ingredients)
                 binding.descriptionFld.setText(recipeItem.description)
+                binding.timeFld.setText(recipeItem.time)
+
 
                 recipeItem.imageUri?.let { imageUriString ->
                     val imageUri = Uri.parse(imageUriString)
@@ -134,6 +138,7 @@ class CreateRecipeActivity : AppCompatActivity() {
                 val name = titleFld?.text?.toString()
                 val ingredients = ingredientsFld?.text?.toString()
                 val description = descriptionFld?.text?.toString()
+                val time = timeFld?.text?.toString()
                 val imageUri = viewModel.selectedImageUri.value?.toString()
 
                 viewModel.viewModelScope.launch {
@@ -141,6 +146,7 @@ class CreateRecipeActivity : AppCompatActivity() {
                         name,
                         ingredients,
                         description,
+                        time,
                         imageUri ?: viewModel.recipeItem.value?.imageUri
                     )
                     val intent = MainActivity.newIntentListRecipeActivity(this@CreateRecipeActivity)

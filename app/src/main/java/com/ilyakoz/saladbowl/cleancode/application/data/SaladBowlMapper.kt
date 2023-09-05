@@ -9,6 +9,7 @@ class SaladBowlMapper {
         name = recipeItem.name,
         ingredients = recipeItem.ingredients,
         description = recipeItem.description,
+        time = recipeItem.time,
         imageUri = recipeItem.imageUri,
     )
 
@@ -17,6 +18,7 @@ class SaladBowlMapper {
         name = recipeItemDbModel.name,
         ingredients = recipeItemDbModel.ingredients,
         description = recipeItemDbModel.description,
+        time = recipeItemDbModel.time,
         imageUri = recipeItemDbModel.imageUri,
     )
 
