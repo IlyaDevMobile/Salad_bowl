@@ -48,11 +48,13 @@ class CreateRecipeViewModel @Inject constructor(
         inputName: String?,
         inputIngredients: String?,
         inputDescription: String?,
+        inputTime: String?,
         inputNameImage: String?
     ) {
         val name = parseText(inputName)
         val ingredients = parseText(inputIngredients)
         val description = parseText(inputDescription)
+        val time = parseText(inputTime)
         val imageUri = selectedImageUri.value.toString()
         val fieldsValid = validateInput(name)
         if (fieldsValid) {
@@ -61,6 +63,7 @@ class CreateRecipeViewModel @Inject constructor(
                     name,
                     ingredients,
                     description,
+                    time,
                     imageUri,
                 )
                 addRecipeUseCase.addRecipeItem(recipeItem)
@@ -74,11 +77,13 @@ class CreateRecipeViewModel @Inject constructor(
         inputName: String?,
         inputIngredients: String?,
         inputDescription: String?,
+        inputTime: String?,
         inputNameImage: String?
     ) {
         val name = parseText(inputName)
         val ingredients = parseText(inputIngredients)
         val description = parseText(inputDescription)
+        val time = parseText(inputTime)
         val imageUri = inputNameImage
         val fieldsValid = validateInput(name)
         if (fieldsValid) {
@@ -88,6 +93,7 @@ class CreateRecipeViewModel @Inject constructor(
                         name = name,
                         ingredients = ingredients,
                         description = description,
+                        time = time,
                         imageUri = inputNameImage
                     )
                     editRecipeUseCase.editRecipeItem(item)

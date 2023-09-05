@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:background="@color/mainBackgroundColor"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
@@ -102,6 +103,7 @@
                 android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                 app:helperTextTextColor="@color/mainTextColor"
                 app:hintTextColor="@color/mainTextColor"
+                app:layout_constraintVertical_chainStyle="packed"
                 app:shapeAppearanceOverlay="@style/RoundedShapeAppearanceOverlay">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -124,7 +126,8 @@
                 app:endIconMode="clear_text"
                 app:endIconTint="@color/mainTextColor"
                 app:errorIconTint="@color/mainTextColor"
-                app:helperText="description"
+                app:helperText="recipe"
+                app:layout_constraintVertical_chainStyle="packed"
                 android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                 app:helperTextTextColor="@color/mainTextColor"
                 app:hintTextColor="@color/mainTextColor"
@@ -132,6 +135,33 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/description_Fld"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="10"
+                    android:textColor="@color/mainTextColor" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="@string/Time"
+                android:textColorHint="@color/mainTextColor"
+                app:boxStrokeColor="@color/mainTextColor"
+                app:counterTextColor="@color/mainTextColor"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/mainTextColor"
+                app:errorIconTint="@color/mainTextColor"
+                app:helperText="@string/Time"
+                app:layout_constraintVertical_chainStyle="packed"
+                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+                app:helperTextTextColor="@color/mainTextColor"
+                app:hintTextColor="@color/mainTextColor"
+                app:shapeAppearanceOverlay="@style/RoundedShapeAppearanceOverlay">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/time_Fld"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="10"

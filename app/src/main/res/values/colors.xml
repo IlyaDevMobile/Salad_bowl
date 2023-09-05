@@ -4,6 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green">#64DD17</color>
     <color name="mainTextColor">@color/black</color>
-    <color name="mainBackgroundColor">@color/white</color>
-    <color name="buttonColor">#4186D3</color>
+    <color name="mainBackgroundColor">#5F8C32</color>
+    <color name="buttonColor">#592520</color>
 </resources>
