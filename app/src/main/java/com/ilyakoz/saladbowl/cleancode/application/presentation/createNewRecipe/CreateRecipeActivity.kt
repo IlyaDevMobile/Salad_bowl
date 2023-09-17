@@ -38,10 +38,10 @@ class CreateRecipeActivity : AppCompatActivity() {
         binding = ActivityCreateRecipeBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
         parseIntent()
-        setupTextWatcher()
-        closeCancelActivity()
         selectModeActivity()
         checkErrorName()
+        setupTextWatcher()
+        closeCancelActivity()
         viewModel.shouldCloseScreen.observe(this) {
             finish()
         }
@@ -171,8 +171,7 @@ class CreateRecipeActivity : AppCompatActivity() {
         }
     }
 
-    private val launcher =
-        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { result ->
+    private val launcher = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { result ->
             if (result != null) {
                 viewModel.selectedImageUri.postValue(result)
                 Glide.with(this).load(result).into(binding.saladImageView)

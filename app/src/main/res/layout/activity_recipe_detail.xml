@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainBackgroundColor"
+    android:background="@color/white"
     tools:context=".cleancode.application.presentation.recipeInfo.RecipeDetailActivity">
 
 
@@ -46,7 +46,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="Название"
-                android:textColor="@color/mainTextColor"
+                android:textColor="@color/black"
                 android:textSize="35sp"
                 android:textStyle="italic" />
 
@@ -58,7 +58,7 @@
                 android:layout_margin="15dp"
                 android:gravity="center"
                 android:text="Ingredients"
-                android:textColor="@color/mainTextColor"
+                android:textColor="@color/black"
                 android:textSize="15sp" />
 
 
@@ -69,7 +69,7 @@
                 android:layout_margin="15dp"
                 android:gravity="center"
                 android:text="Recipe"
-                android:textColor="@color/mainTextColor"
+                android:textColor="@color/black"
                 android:textSize="15sp" />
 
             <Button
@@ -77,10 +77,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:backgroundTint="@color/buttonColor"
+                android:backgroundTint="@color/black"
                 android:padding="10dp"
                 android:text="Edit"
-                android:textColor="@color/mainBackgroundColor"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:shapeAppearanceOverlay="@style/RoundedShapeAppearanceOverlay" />
 
@@ -90,10 +90,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:backgroundTint="@color/buttonColor"
+                android:backgroundTint="@color/black"
                 android:padding="10dp"
                 android:text="@string/cancel"
-                android:textColor="@color/mainBackgroundColor"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:shapeAppearanceOverlay="@style/RoundedShapeAppearanceOverlay" />
 

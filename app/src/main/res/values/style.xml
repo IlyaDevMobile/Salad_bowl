@@ -25,7 +25,7 @@
     <style name="TextViewStyle">
         <item name="android:textSize">14sp</item>
         <item name="android:padding">10dp</item>
-        <item name="android:textColor">@color/mainTextColor</item>
+        <item name="android:textColor">@color/black</item>
 
 
     </style>

@@ -7,8 +7,8 @@
     <style name="Theme.SaladBowl" parent="Base.Theme.SaladBowl">
         <item name="android:windowBackground">@color/white</item>
 
-        <item name="android:statusBarColor">@color/mainBackgroundColor</item>
-        <item name="android:navigationBarColor">@color/buttonColor</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/black</item>
 
 
     </style>
