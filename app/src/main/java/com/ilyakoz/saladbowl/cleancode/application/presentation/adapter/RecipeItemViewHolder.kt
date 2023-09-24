@@ -12,7 +12,6 @@ class RecipeItemViewHolder(private val binding: ItemSaladBinding) :
         binding.saladNameTv.text = item.name
         Glide.with(itemView)
             .load(item.imageUri)
-            .placeholder(R.drawable.ic_emptyphoto)
             .error(R.drawable.ic_emptyphoto)
             .into(binding.saladImageview)
     }
