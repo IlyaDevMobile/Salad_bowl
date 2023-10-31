@@ -19,16 +19,17 @@ import com.bumptech.glide.Glide
 import com.ilyakoz.saladbowl.R
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 import com.ilyakoz.saladbowl.cleancode.application.presentation.listRecipe.MainActivity
+import com.ilyakoz.saladbowl.cleancode.application.presentation.listRecipe.MainViewModel
 import com.ilyakoz.saladbowl.databinding.ActivityCreateRecipeBinding
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class CreateRecipeActivity : AppCompatActivity() {
 
 
     private lateinit var binding: ActivityCreateRecipeBinding
-    private val viewModel: CreateRecipeViewModel by viewModels()
+    private val viewModel by viewModel<CreateRecipeViewModel>()
+
 
 
     private var screenMode = MODE_UNKNOWN

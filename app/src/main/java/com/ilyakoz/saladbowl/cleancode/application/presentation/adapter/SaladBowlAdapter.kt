@@ -7,7 +7,7 @@ import com.ilyakoz.saladbowl.databinding.ItemSaladBinding
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 
 class SaladBowlAdapter :
-    ListAdapter<RecipeItem, RecipeItemViewHolder>(RecipeItemDiffCallback()) {
+    ListAdapter<RecipeItem, RecipeItemViewHolder>(RecipeItemDiffCallback) {
 
 
     var onRecipeItemClickListener: ((RecipeItem) -> Unit)? = null

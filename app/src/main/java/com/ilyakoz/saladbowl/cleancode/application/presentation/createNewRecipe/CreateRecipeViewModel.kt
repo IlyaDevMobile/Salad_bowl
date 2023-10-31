@@ -9,12 +9,9 @@ import com.ilyakoz.saladbowl.cleancode.application.domain.AddRecipeUseCase
 import com.ilyakoz.saladbowl.cleancode.application.domain.EditRecipeUseCase
 import com.ilyakoz.saladbowl.cleancode.application.domain.GetRecipeItemUseCase
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class CreateRecipeViewModel @Inject constructor(
+class CreateRecipeViewModel (
     private val getRecipeItemUseCase: GetRecipeItemUseCase,
     private val addRecipeUseCase: AddRecipeUseCase,
     private val editRecipeUseCase: EditRecipeUseCase

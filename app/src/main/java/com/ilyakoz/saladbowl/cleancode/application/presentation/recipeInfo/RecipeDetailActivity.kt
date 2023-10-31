@@ -2,16 +2,14 @@ package com.ilyakoz.saladbowl.cleancode.application.presentation.recipeInfo
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.appcompat.app.AppCompatActivity
 import com.ilyakoz.saladbowl.R
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 import com.ilyakoz.saladbowl.databinding.ActivityRecipeDetailBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 
-@AndroidEntryPoint
 class RecipeDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRecipeDetailBinding
@@ -26,44 +24,43 @@ class RecipeDetailActivity : AppCompatActivity() {
         binding = ActivityRecipeDetailBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
         parseIntent()
-        val fragment = when(screenMode){
+        if (savedInstanceState == null) {
+            startFragment()
+        }
+
+
+    }
+
+    private fun startFragment() {
+        val fragment = when (screenMode) {
             MODE_INFO -> RecipeItemFragment.newInstanceInfoItem(recipeItemId)
             else -> throw RuntimeException("Unknown screen mode $screenMode")
         }
         supportFragmentManager.beginTransaction()
-            .replace(R.id.recipe_item_container,RecipeItemFragment.newInstanceInfoItem(recipeItemId))
+            .replace(
+                R.id.recipe_item_container,
+                RecipeItemFragment.newInstanceInfoItem(recipeItemId)
+            )
             .commit()
-
-
-
-
     }
 
 
     private fun parseIntent() {
-        if(!intent.hasExtra(EXTRA_SCREEN_MODE)){
+        if (!intent.hasExtra(EXTRA_SCREEN_MODE)) {
             throw java.lang.RuntimeException("Param screen mode is absent")
         }
-        val mode = intent .getStringExtra(EXTRA_SCREEN_MODE)
-        if (mode != MODE_INFO){
+        val mode = intent.getStringExtra(EXTRA_SCREEN_MODE)
+        if (mode != MODE_INFO) {
             throw RuntimeException("Unknown screen mode $mode")
         }
         screenMode = mode
-        if (screenMode == MODE_INFO){
-            if (!intent.hasExtra(EXTRA_RECIPE_ITEM_ID)){
+        if (screenMode == MODE_INFO) {
+            if (!intent.hasExtra(EXTRA_RECIPE_ITEM_ID)) {
                 throw RuntimeException("Param shop item id is absent")
             }
-            recipeItemId = intent.getIntExtra(EXTRA_RECIPE_ITEM_ID,RecipeItem.UNDEFINED_ID)
+            recipeItemId = intent.getIntExtra(EXTRA_RECIPE_ITEM_ID, RecipeItem.UNDEFINED_ID)
         }
     }
-
-
-
-
-
-
-
-
 
 
     companion object {

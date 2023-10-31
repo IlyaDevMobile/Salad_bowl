@@ -4,16 +4,10 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.ilyakoz.saladbowl.cleancode.application.domain.EditRecipeUseCase
 import com.ilyakoz.saladbowl.cleancode.application.domain.GetRecipeItemUseCase
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class RecipeDetailViewModel @Inject constructor(
+class RecipeDetailViewModel (
     private val getRecipeItemUseCase: GetRecipeItemUseCase
 ) : ViewModel() {
 

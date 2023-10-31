@@ -72,6 +72,16 @@
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
+            <TextView
+                android:id="@+id/TimeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:gravity="center"
+                android:text="Time"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
             <Button
                 android:id="@+id/editButton"
                 android:layout_width="match_parent"

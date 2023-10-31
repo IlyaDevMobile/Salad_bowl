@@ -4,20 +4,18 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.GridLayoutManager
-import com.ilyakoz.saladbowl.cleancode.application.presentation.recipeInfo.RecipeDetailActivity
 import com.ilyakoz.saladbowl.cleancode.application.presentation.adapter.SaladBowlAdapter
 import com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe.CreateRecipeActivity
+import com.ilyakoz.saladbowl.cleancode.application.presentation.recipeInfo.RecipeDetailActivity
 import com.ilyakoz.saladbowl.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
 
@@ -25,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: SaladBowlAdapter
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel by viewModel<MainViewModel>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
