@@ -5,13 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.ilyakoz.saladbowl.cleancode.application.domain.DeleteRecipeUseCase
 import com.ilyakoz.saladbowl.cleancode.application.domain.GetListRecipeUseCase
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
-@HiltViewModel
-class MainViewModel @Inject constructor(
+class MainViewModel (
     private val getListRecipeUseCase: GetListRecipeUseCase,
     private val deleteRecipeUseCase: DeleteRecipeUseCase
 ) : ViewModel() {

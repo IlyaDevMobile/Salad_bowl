@@ -2,20 +2,18 @@ package com.ilyakoz.saladbowl.cleancode.application.presentation.recipeInfo
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 import com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe.CreateRecipeActivity
 import com.ilyakoz.saladbowl.databinding.FragmentRecipeItemBinding
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-@AndroidEntryPoint
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 class RecipeItemFragment : Fragment() {
 
 
@@ -24,7 +22,8 @@ class RecipeItemFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("FragmentRecipeItemBinding is null")
 
 
-    private val viewModel: RecipeDetailViewModel by viewModels()
+    private val viewModel by viewModel<RecipeDetailViewModel>()
+
 
 
     private var screenMode = MODE_UNKNOWN
@@ -96,9 +95,9 @@ class RecipeItemFragment : Fragment() {
                 binding.descriptionTextView.text = recipeItem.description
                 recipeItem.imageUri?.let {
                     val imageUri = Uri.parse(it)
-                    Log.d("ImageUriDebug", "Loaded image URI: $imageUri")
                     loadAndDisplayImage(imageUri)
                 }
+                binding.TimeTextView.text = recipeItem.time
             }
         }
     }
@@ -112,7 +111,8 @@ class RecipeItemFragment : Fragment() {
 
     private fun closeCancelActivity() {
         binding.cancelButton.setOnClickListener {
-            activity?.onBackPressed()
+            activity?.onBackPressedDispatcher?.onBackPressed()
+
         }
     }
 
