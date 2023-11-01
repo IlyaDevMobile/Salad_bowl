@@ -2,7 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
-
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
 
 
 }
@@ -76,18 +77,14 @@ dependencies {
 
     implementation("io.insert-koin:koin-android:3.5.0")
     implementation("io.insert-koin:koin-core:3.5.0")
-    implementation ("io.insert-koin:koin-annotations:1.3.0")
-    ksp ("io.insert-koin:koin-ksp-compiler:1.3.0")
+    implementation("io.insert-koin:koin-annotations:1.3.0")
+    ksp("io.insert-koin:koin-ksp-compiler:1.3.0")
 
 
 
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
-
-
-
-
 
 
 }

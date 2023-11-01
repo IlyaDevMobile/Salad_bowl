@@ -12,9 +12,7 @@ import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 import kotlinx.coroutines.launch
 
 class CreateRecipeViewModel (
-    private val getRecipeItemUseCase: GetRecipeItemUseCase,
     private val addRecipeUseCase: AddRecipeUseCase,
-    private val editRecipeUseCase: EditRecipeUseCase
 ) : ViewModel() {
 
 
@@ -22,9 +20,9 @@ class CreateRecipeViewModel (
     val errorInputName: LiveData<Boolean>
         get() = _errorInputName
 
-    private val _recipeItem = MutableLiveData<RecipeItem>()
-    val recipeItem: LiveData<RecipeItem>
-        get() = _recipeItem
+//    private val _recipeItem = MutableLiveData<RecipeItem>()
+//    val recipeItem: LiveData<RecipeItem>
+//        get() = _recipeItem
 
     private val _shouldCloseScreen = MutableLiveData<Unit>()
     val shouldCloseScreen: LiveData<Unit>
@@ -35,10 +33,10 @@ class CreateRecipeViewModel (
         get() = _selectedImageUri
 
 
-    suspend fun getRecipeItem(recipeItemId: Int) {
-        val item = getRecipeItemUseCase.getRecipeItem(recipeItemId)
-        _recipeItem.value = item
-    }
+//    suspend fun getRecipeItem(recipeItemId: Int) {
+//        val item = getRecipeItemUseCase.getRecipeItem(recipeItemId)
+//        _recipeItem.value = item
+//    }
 
 
     suspend fun addRecipeItem(
@@ -70,35 +68,35 @@ class CreateRecipeViewModel (
     }
 
 
-    suspend fun editRecipeItem(
-        inputName: String?,
-        inputIngredients: String?,
-        inputDescription: String?,
-        inputTime: String?,
-        inputNameImage: String?
-    ) {
-        val name = parseText(inputName)
-        val ingredients = parseText(inputIngredients)
-        val description = parseText(inputDescription)
-        val time = parseText(inputTime)
-        val imageUri = inputNameImage
-        val fieldsValid = validateInput(name)
-        if (fieldsValid) {
-            _recipeItem.value?.let {
-                viewModelScope.launch {
-                    val item = it.copy(
-                        name = name,
-                        ingredients = ingredients,
-                        description = description,
-                        time = time,
-                        imageUri = inputNameImage
-                    )
-                    editRecipeUseCase.editRecipeItem(item)
-                    finishWork()
-                }
-            }
-        }
-    }
+//    suspend fun editRecipeItem(
+//        inputName: String?,
+//        inputIngredients: String?,
+//        inputDescription: String?,
+//        inputTime: String?,
+//        inputNameImage: String?
+//    ) {
+//        val name = parseText(inputName)
+//        val ingredients = parseText(inputIngredients)
+//        val description = parseText(inputDescription)
+//        val time = parseText(inputTime)
+//        val imageUri = inputNameImage
+//        val fieldsValid = validateInput(name)
+//        if (fieldsValid) {
+//            _recipeItem.value?.let {
+//                viewModelScope.launch {
+//                    val item = it.copy(
+//                        name = name,
+//                        ingredients = ingredients,
+//                        description = description,
+//                        time = time,
+//                        imageUri = inputNameImage
+//                    )
+//                    editRecipeUseCase.editRecipeItem(item)
+//                    finishWork()
+//                }
+//            }
+//        }
+//    }
 
 
     private fun parseText(inputName: String?): String {

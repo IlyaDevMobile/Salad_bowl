@@ -12,14 +12,12 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
 import com.ilyakoz.saladbowl.R
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
-import com.ilyakoz.saladbowl.cleancode.application.presentation.listRecipe.MainActivity
-import com.ilyakoz.saladbowl.cleancode.application.presentation.listRecipe.MainViewModel
+//import com.ilyakoz.saladbowl.cleancode.application.presentation.listRecipe.MainActivity
 import com.ilyakoz.saladbowl.databinding.ActivityCreateRecipeBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -38,8 +36,9 @@ class CreateRecipeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateRecipeBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
-        parseIntent()
-        selectModeActivity()
+//        parseIntent()
+//        selectModeActivity()
+        launchAddMode()
         checkErrorName()
         setupTextWatcher()
         closeCancelActivity()
@@ -83,12 +82,12 @@ class CreateRecipeActivity : AppCompatActivity() {
         })
     }
 
-    private fun selectModeActivity() {
-        when (screenMode) {
-            MODE_EDIT -> launchEditMode()
-            MODE_ADD -> launchAddMode()
-        }
-    }
+//    private fun selectModeActivity() {
+//        when (screenMode) {
+////            MODE_EDIT -> launchEditMode()
+//            MODE_ADD -> launchAddMode()
+//        }
+//    }
 
     private fun launchAddMode() {
         binding.saveButton.setOnClickListener {
@@ -111,66 +110,66 @@ class CreateRecipeActivity : AppCompatActivity() {
         }
     }
 
-    private fun launchEditMode() {
-        viewModel.viewModelScope.launch {
-            viewModel.getRecipeItem(recipeItemId)
-            viewModel.recipeItem.observe(this@CreateRecipeActivity) { recipeItem ->
-                binding.titleFld.setText(recipeItem.name)
-                binding.ingredientsFld.setText(recipeItem.ingredients)
-                binding.descriptionFld.setText(recipeItem.description)
-                binding.timeFld.setText(recipeItem.time)
+//    private fun launchEditMode() {
+//        viewModel.viewModelScope.launch {
+//            viewModel.getRecipeItem(recipeItemId)
+//            viewModel.recipeItem.observe(this@CreateRecipeActivity) { recipeItem ->
+//                binding.titleFld.setText(recipeItem.name)
+//                binding.ingredientsFld.setText(recipeItem.ingredients)
+//                binding.descriptionFld.setText(recipeItem.description)
+//                binding.timeFld.setText(recipeItem.time)
+//
+//
+//                recipeItem.imageUri?.let { imageUriString ->
+//                    val imageUri = Uri.parse(imageUriString)
+//                    Log.d("ImageUriDebug", "Loaded image URI: $imageUri")
+//                    loadAndDisplayImage(imageUri)
+//                }
+//
+//                setupEditButton()
+//            }
+//        }
+//    }
 
 
-                recipeItem.imageUri?.let { imageUriString ->
-                    val imageUri = Uri.parse(imageUriString)
-                    Log.d("ImageUriDebug", "Loaded image URI: $imageUri")
-                    loadAndDisplayImage(imageUri)
-                }
+//    private fun setupEditButton() {
+//        binding.saveButton.setOnClickListener {
+//            with(binding) {
+//                val name = titleFld?.text?.toString()
+//                val ingredients = ingredientsFld?.text?.toString()
+//                val description = descriptionFld?.text?.toString()
+//                val time = timeFld?.text?.toString()
+//                val imageUri = viewModel.selectedImageUri.value?.toString()
+//
+//                viewModel.viewModelScope.launch {
+//                    viewModel.editRecipeItem(
+//                        name,
+//                        ingredients,
+//                        description,
+//                        time,
+//                        imageUri ?: viewModel.recipeItem.value?.imageUri
+//                    )
+//                   val intent = MainActivity.newIntentListRecipeActivity(this@CreateRecipeActivity)
+//                  startActivity(intent)
+//                }
+//            }
+//        }
+//    }
 
-                setupEditButton()
-            }
-        }
-    }
-
-
-    private fun setupEditButton() {
-        binding.saveButton.setOnClickListener {
-            with(binding) {
-                val name = titleFld?.text?.toString()
-                val ingredients = ingredientsFld?.text?.toString()
-                val description = descriptionFld?.text?.toString()
-                val time = timeFld?.text?.toString()
-                val imageUri = viewModel.selectedImageUri.value?.toString()
-
-                viewModel.viewModelScope.launch {
-                    viewModel.editRecipeItem(
-                        name,
-                        ingredients,
-                        description,
-                        time,
-                        imageUri ?: viewModel.recipeItem.value?.imageUri
-                    )
-                    val intent = MainActivity.newIntentListRecipeActivity(this@CreateRecipeActivity)
-                    startActivity(intent)
-                }
-            }
-        }
-    }
-
-    private fun parseIntent() {
-        val mode = intent.getStringExtra(EXTRA_SCREEN_MODE)
-            ?: throw IllegalArgumentException("Param screen mode is absent")
-        if (mode != MODE_EDIT && mode != MODE_ADD) {
-            throw IllegalArgumentException("Unknown screen mode $mode")
-        }
-        screenMode = mode
-        if (screenMode == MODE_EDIT) {
-            recipeItemId = intent.getIntExtra(EXTRA_RECIPE_ITEM_ID, RecipeItem.UNDEFINED_ID)
-            if (recipeItemId == RecipeItem.UNDEFINED_ID) {
-                throw IllegalArgumentException("Param recipe item id is absent")
-            }
-        }
-    }
+//    private fun parseIntent() {
+//        val mode = intent.getStringExtra(EXTRA_SCREEN_MODE)
+//            ?: throw IllegalArgumentException("Param screen mode is absent")
+//        if (mode != MODE_EDIT && mode != MODE_ADD) {
+//            throw IllegalArgumentException("Unknown screen mode $mode")
+//        }
+//        screenMode = mode
+//        if (screenMode == MODE_EDIT) {
+//            recipeItemId = intent.getIntExtra(EXTRA_RECIPE_ITEM_ID, RecipeItem.UNDEFINED_ID)
+//            if (recipeItemId == RecipeItem.UNDEFINED_ID) {
+//                throw IllegalArgumentException("Param recipe item id is absent")
+//            }
+//        }
+//    }
 
     private val launcher = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { result ->
             if (result != null) {
@@ -207,12 +206,12 @@ class CreateRecipeActivity : AppCompatActivity() {
             return intent
         }
 
-        fun newIntentEditItem(context: Context, recipeItemId: Int): Intent {
-            val intent = Intent(context, CreateRecipeActivity::class.java)
-            intent.putExtra(EXTRA_SCREEN_MODE, MODE_EDIT)
-            intent.putExtra(EXTRA_RECIPE_ITEM_ID, recipeItemId)
-            return intent
-        }
+//        fun newIntentEditItem(context: Context, recipeItemId: Int): Intent {
+//            val intent = Intent(context, CreateRecipeActivity::class.java)
+//            intent.putExtra(EXTRA_SCREEN_MODE, MODE_EDIT)
+//            intent.putExtra(EXTRA_RECIPE_ITEM_ID, recipeItemId)
+//            return intent
+//        }
 
 
     }

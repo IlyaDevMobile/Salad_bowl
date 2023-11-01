@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
-import com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe.CreateRecipeActivity
+import com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation.RecipeInfoFragmentViewModel
 import com.ilyakoz.saladbowl.databinding.FragmentRecipeItemBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -22,8 +22,7 @@ class RecipeItemFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("FragmentRecipeItemBinding is null")
 
 
-    private val viewModel by viewModel<RecipeDetailViewModel>()
-
+    private val viewModel by viewModel<RecipeInfoFragmentViewModel>()
 
 
     private var screenMode = MODE_UNKNOWN
@@ -39,9 +38,7 @@ class RecipeItemFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRecipeItemBinding.inflate(
-            inflater, container, false
-        )
+        _binding = FragmentRecipeItemBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -50,7 +47,7 @@ class RecipeItemFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         closeCancelActivity()
         launchInfoMode()
-        openEditActivity()
+//        openEditActivity()
     }
 
     override fun onDestroy() {
@@ -74,17 +71,17 @@ class RecipeItemFragment : Fragment() {
                 throw RuntimeException("Param recipe item id is absent")
 
             }
-            recipeItemId = args.getInt(EXTRA_RECIPE_ITEM_ID,RecipeItem.UNDEFINED_ID)
+            recipeItemId = args.getInt(EXTRA_RECIPE_ITEM_ID, RecipeItem.UNDEFINED_ID)
         }
     }
 
 
-    private fun openEditActivity() {
-        binding.editButton.setOnClickListener {
-            val intent = CreateRecipeActivity.newIntentEditItem(requireActivity(), recipeItemId)
-            startActivity(intent)
-        }
-    }
+//    private fun openEditActivity() {
+//        binding.editButton.setOnClickListener {
+//            val intent = CreateRecipeActivity.newIntentEditItem(requireActivity(), recipeItemId)
+//            startActivity(intent)
+//        }
+//    }
 
     private fun launchInfoMode() {
         viewModel.viewModelScope.launch {

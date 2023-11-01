@@ -1,23 +1,27 @@
 package com.ilyakoz.saladbowl.cleancode.application.di
 
+import com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation.EditRecipeViewModel
 import com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe.CreateRecipeViewModel
-import com.ilyakoz.saladbowl.cleancode.application.presentation.listRecipe.MainViewModel
-import com.ilyakoz.saladbowl.cleancode.application.presentation.recipeInfo.RecipeDetailViewModel
+import com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation.WelcomeFragmentViewModel
+import com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation.RecipeInfoFragmentViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 
 val appModule = module {
-    viewModel<MainViewModel> {
-        MainViewModel(
+    viewModel<WelcomeFragmentViewModel> {
+        WelcomeFragmentViewModel(
             getListRecipeUseCase = get(),
             deleteRecipeUseCase = get()
         )
     }
     viewModel<CreateRecipeViewModel> {
-        CreateRecipeViewModel(get(), get(), get())
+        CreateRecipeViewModel(get())
     }
-    viewModel<RecipeDetailViewModel> {
-        RecipeDetailViewModel(get())
+    viewModel<RecipeInfoFragmentViewModel> {
+        RecipeInfoFragmentViewModel(get())
+    }
+    viewModel<EditRecipeViewModel>{
+        EditRecipeViewModel(get(),get())
     }
 }

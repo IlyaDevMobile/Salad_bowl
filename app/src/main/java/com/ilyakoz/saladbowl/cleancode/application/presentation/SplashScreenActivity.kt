@@ -7,7 +7,9 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.ilyakoz.saladbowl.R
-import com.ilyakoz.saladbowl.cleancode.application.presentation.listRecipe.MainActivity
+import com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation.WelcomeFragment
+
+//import com.ilyakoz.saladbowl.cleancode.application.presentation.listRecipe.MainActivity
 
 class SplashScreenActivity: AppCompatActivity() {
 
@@ -20,7 +22,7 @@ class SplashScreenActivity: AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
 
         Handler().postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, WelcomeFragment::class.java)
             startActivity(intent)
             finish()
         }, SPLASH_DELAY)
