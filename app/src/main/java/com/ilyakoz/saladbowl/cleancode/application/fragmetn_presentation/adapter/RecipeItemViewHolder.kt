@@ -1,4 +1,4 @@
-package com.ilyakoz.saladbowl.cleancode.application.presentation.adapter
+package com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -12,7 +12,7 @@ class RecipeItemViewHolder(private val binding: ItemSaladBinding) :
         binding.saladNameTv.text = item.name
         Glide.with(itemView)
             .load(item.imageUri)
-            .error(R.drawable.ic_emptyphoto)
+            .error(R.drawable.empty_photo)
             .into(binding.saladImageview)
     }
 

@@ -1,4 +1,4 @@
-package com.ilyakoz.saladbowl.cleancode.application.presentation.adapter
+package com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem

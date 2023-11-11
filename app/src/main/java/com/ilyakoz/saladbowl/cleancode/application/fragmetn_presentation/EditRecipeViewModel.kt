@@ -1,4 +1,4 @@
-package com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe
+package com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation
 
 import android.net.Uri
 import androidx.lifecycle.LiveData
@@ -11,12 +11,10 @@ import com.ilyakoz.saladbowl.cleancode.application.domain.GetRecipeItemUseCase
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 import kotlinx.coroutines.launch
 
-class CreateRecipeViewModel (
+class EditRecipeViewModel(
     private val getRecipeItemUseCase: GetRecipeItemUseCase,
-    private val addRecipeUseCase: AddRecipeUseCase,
     private val editRecipeUseCase: EditRecipeUseCase
 ) : ViewModel() {
-
 
     private val _errorInputName = MutableLiveData<Boolean>()
     val errorInputName: LiveData<Boolean>
@@ -39,36 +37,6 @@ class CreateRecipeViewModel (
         val item = getRecipeItemUseCase.getRecipeItem(recipeItemId)
         _recipeItem.value = item
     }
-
-
-    suspend fun addRecipeItem(
-        inputName: String?,
-        inputIngredients: String?,
-        inputDescription: String?,
-        inputTime: String?,
-        inputNameImage: String?
-    ) {
-        val name = parseText(inputName)
-        val ingredients = parseText(inputIngredients)
-        val description = parseText(inputDescription)
-        val time = parseText(inputTime)
-        val imageUri = selectedImageUri.value.toString()
-        val fieldsValid = validateInput(name)
-        if (fieldsValid) {
-            viewModelScope.launch {
-                val recipeItem = RecipeItem(
-                    name,
-                    ingredients,
-                    description,
-                    time,
-                    imageUri,
-                )
-                addRecipeUseCase.addRecipeItem(recipeItem)
-                finishWork()
-            }
-        }
-    }
-
 
     suspend fun editRecipeItem(
         inputName: String?,
@@ -100,16 +68,13 @@ class CreateRecipeViewModel (
         }
     }
 
-
     private fun parseText(inputName: String?): String {
         return inputName?.trim() ?: ""
     }
 
-
-//    private fun parseImage(inputNameImage: String?): String {
-//        return inputNameImage ?: defaultImageUri.toString()
-//    }
-
+    private fun finishWork() {
+        _shouldCloseScreen.value = Unit
+    }
 
     private fun validateInput(name: String): Boolean {
         var result = true
@@ -120,13 +85,7 @@ class CreateRecipeViewModel (
         return result
     }
 
-    fun resetErrorInputName() {
-        _errorInputName.value = false
-    }
 
-    private fun finishWork() {
-        _shouldCloseScreen.value = Unit
-    }
 
 
 }

@@ -1,4 +1,4 @@
-package com.ilyakoz.saladbowl.cleancode.application.presentation.listRecipe
+package com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,7 +8,7 @@ import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 import kotlinx.coroutines.launch
 
 
-class MainViewModel (
+class WelcomeFragmentViewModel (
     private val getListRecipeUseCase: GetListRecipeUseCase,
     private val deleteRecipeUseCase: DeleteRecipeUseCase
 ) : ViewModel() {

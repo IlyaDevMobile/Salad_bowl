@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".cleancode.application.presentation.createNewRecipe.CreateRecipeActivity">
+    tools:context=".cleancode.application.fragmetn_presentation.CreateNewRecipeFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                     android:adjustViewBounds="false"
                     android:contentDescription="jjj"
                     android:scaleType="centerCrop"
-                    tools:src="@drawable/salad" />
+                    android:src="@drawable/empty_photo" />
 
             </androidx.cardview.widget.CardView>
 
