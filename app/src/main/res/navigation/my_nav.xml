@@ -12,9 +12,7 @@
         tools:layout="@layout/fragment_welcome" >
         <action
             android:id="@+id/action_welcomeFragment_to_recipeInfoFragment"
-            app:destination="@id/recipeInfoFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_enter_anim" />
+            app:destination="@id/recipeInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/createNewRecipeFragment"
@@ -36,8 +34,21 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_recipeInfoFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_enter_anim" />
+            app:destination="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_recipeInfoFragment_to_editRecipeFragment"
+            app:destination="@id/editRecipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editRecipeFragment"
+        android:name="com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation.EditRecipeFragment"
+        android:label="fragment_edit_new_recipe"
+        tools:layout="@layout/fragment_edit_new_recipe" >
+        <argument
+            android:name="recipeEdit"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_editRecipeFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
     </fragment>
 </navigation>

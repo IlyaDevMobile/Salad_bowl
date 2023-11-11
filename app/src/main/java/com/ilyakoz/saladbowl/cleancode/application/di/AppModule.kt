@@ -1,7 +1,7 @@
 package com.ilyakoz.saladbowl.cleancode.application.di
 
 import com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation.EditRecipeViewModel
-import com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe.CreateRecipeViewModel
+import com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation.CreateRecipeViewModel
 import com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation.WelcomeFragmentViewModel
 import com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation.RecipeInfoFragmentViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel

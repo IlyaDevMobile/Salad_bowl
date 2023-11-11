@@ -17,10 +17,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.ilyakoz.saladbowl.R
-import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
-import com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe.CreateRecipeActivity
 
-import com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe.CreateRecipeViewModel
 import com.ilyakoz.saladbowl.databinding.FragmentCreateNewRecipeBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

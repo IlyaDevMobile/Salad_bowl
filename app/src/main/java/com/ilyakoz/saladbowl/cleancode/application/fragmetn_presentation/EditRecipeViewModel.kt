@@ -1,5 +1,6 @@
 package com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,6 +27,10 @@ class EditRecipeViewModel(
     private val _shouldCloseScreen = MutableLiveData<Unit>()
     val shouldCloseScreen: LiveData<Unit>
         get() = _shouldCloseScreen
+
+    private val _selectedImageUri = MutableLiveData<Uri>()
+    val selectedImageUri: MutableLiveData<Uri>
+        get() = _selectedImageUri
 
 
     suspend fun getRecipeItem(recipeItemId: Int) {

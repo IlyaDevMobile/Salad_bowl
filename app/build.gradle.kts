@@ -73,7 +73,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
 
-    implementation("androidx.fragment:fragment-ktx:1.6.1")
 
     implementation("io.insert-koin:koin-android:3.5.0")
     implementation("io.insert-koin:koin-core:3.5.0")
@@ -82,6 +81,7 @@ dependencies {
 
 
 
+    implementation("androidx.fragment:fragment-ktx:1.6.1")
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.4")

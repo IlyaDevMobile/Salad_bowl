@@ -1,4 +1,4 @@
-package com.ilyakoz.saladbowl.cleancode.application.presentation.createNewRecipe
+package com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation
 
 import android.net.Uri
 import androidx.lifecycle.LiveData
@@ -6,8 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ilyakoz.saladbowl.cleancode.application.domain.AddRecipeUseCase
-import com.ilyakoz.saladbowl.cleancode.application.domain.EditRecipeUseCase
-import com.ilyakoz.saladbowl.cleancode.application.domain.GetRecipeItemUseCase
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 import kotlinx.coroutines.launch
 

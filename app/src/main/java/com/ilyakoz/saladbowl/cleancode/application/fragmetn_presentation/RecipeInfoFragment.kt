@@ -50,6 +50,9 @@ class RecipeInfoFragment : Fragment() {
         binding.cancelButton.setOnClickListener {
             findNavController().navigate(R.id.welcomeFragment)
         }
+        binding.editButton.setOnClickListener {
+            findNavController().navigate(RecipeInfoFragmentDirections.actionRecipeInfoFragmentToEditRecipeFragment(args.recipeItem))
+        }
     }
 
 
