@@ -11,19 +11,19 @@ import org.koin.dsl.module
 val domainModule = module {
 
     factory<AddRecipeUseCase> {
-        AddRecipeUseCase(get())
+        AddRecipeUseCase(saladBowlRepository = get())
     }
     factory<DeleteRecipeUseCase> {
-        DeleteRecipeUseCase(get())
+        DeleteRecipeUseCase(saladBowlRepository = get())
     }
     factory<EditRecipeUseCase> {
-        EditRecipeUseCase(get())
+        EditRecipeUseCase(saladBowlRepository = get())
     }
     factory<GetListRecipeUseCase> {
-        GetListRecipeUseCase(get())
+        GetListRecipeUseCase(saladBowlRepository = get())
     }
     factory<GetRecipeItemUseCase> {
-        GetRecipeItemUseCase(get())
+        GetRecipeItemUseCase(saladBowlRepository = get())
     }
 
 }

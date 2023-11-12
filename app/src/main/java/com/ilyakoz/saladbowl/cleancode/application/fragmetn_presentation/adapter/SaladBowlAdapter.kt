@@ -3,8 +3,8 @@ package com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation.adapte
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.ilyakoz.saladbowl.databinding.ItemSaladBinding
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
+import com.ilyakoz.saladbowl.databinding.ItemSaladBinding
 
 class SaladBowlAdapter :
     ListAdapter<RecipeItem, RecipeItemViewHolder>(RecipeItemDiffCallback) {

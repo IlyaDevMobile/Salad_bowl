@@ -6,9 +6,8 @@ import androidx.lifecycle.map
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 import com.ilyakoz.saladbowl.cleancode.application.domain.SaladBowlRepository
 
-class SaladBowlRepositoryImpl(application: Application) : SaladBowlRepository {
+class SaladBowlRepositoryImpl(private val recipeItemDao: RecipeItemDao) : SaladBowlRepository {
 
-    private val recipeItemDao = AppDatabase.getInstance(application).recipeItemDao()
     private val mapper = SaladBowlMapper()
 
     override suspend fun addRecipe(recipeItem: RecipeItem) {

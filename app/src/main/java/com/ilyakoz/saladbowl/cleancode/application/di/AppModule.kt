@@ -16,12 +16,12 @@ val appModule = module {
         )
     }
     viewModel<CreateRecipeViewModel> {
-        CreateRecipeViewModel(get())
+        CreateRecipeViewModel(addRecipeUseCase =  get())
     }
     viewModel<RecipeInfoFragmentViewModel> {
-        RecipeInfoFragmentViewModel(get())
+        RecipeInfoFragmentViewModel(getRecipeItemUseCase =  get())
     }
     viewModel<EditRecipeViewModel>{
-        EditRecipeViewModel(get(),get())
+        EditRecipeViewModel(getRecipeItemUseCase =  get(), editRecipeUseCase =  get())
     }
 }
