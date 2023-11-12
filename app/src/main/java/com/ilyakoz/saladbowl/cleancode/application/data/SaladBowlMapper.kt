@@ -22,7 +22,5 @@ class SaladBowlMapper {
         imageUri = recipeItemDbModel.imageUri,
     )
 
-    fun mapListDbModelToListEntity(list: List<RecipeItemDbModel>) = list.map {
-        mapDbModelToEntity(it)
-    }
+
 }
