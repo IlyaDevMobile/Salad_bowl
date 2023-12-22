@@ -1,15 +1,17 @@
 <resources>
     <string name="app_name">Salad bowl</string>
     <string name="todo">todo\n</string>
-    <string name="title">Title</string>
-    <string name="ingredients">ingredients</string>
-    <string name="description">recipe</string>
-    <string name="Time">time</string>
-    <string name="save">Save</string>
-    <string name="cancel">Cancel</string>
+    <string name="title">Название</string>
+    <string name="ingredients">Ингредиенты</string>
+    <string name="description">Описание</string>
+    <string name="Time">Время</string>
+    <string name="save">Сохранить</string>
+    <string name="cancel">Отмена</string>
     <string name="salad">Salad</string>
     <string name="error_input_count">Title is missing</string>
-    <string name="add_photo">Add Photo</string>
+    <string name="add_photo">Добавить фото</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="input_text">Введите название</string>
+    <string name="test">Введите название</string>
 </resources>
