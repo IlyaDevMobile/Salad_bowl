@@ -11,6 +11,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ilyakoz.saladbowl.R
 import com.ilyakoz.saladbowl.cleancode.application.data.RecipeItemDbModel
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 import com.ilyakoz.saladbowl.cleancode.application.fragmetn_presentation.adapter.SaladBowlAdapter
@@ -77,15 +78,15 @@ class WelcomeFragment : Fragment() {
     private fun deleteRecipeItem() {
         adapter.onRecipeItemLongClickListener = { recipeItem ->
             val alertDialogBuilder = AlertDialog.Builder(requireContext())
-            alertDialogBuilder.setTitle("Delete Recipe")
-            alertDialogBuilder.setMessage("Are you sure you want to delete this recipe?")
-            alertDialogBuilder.setPositiveButton("Yes") { dialog, _ ->
+            alertDialogBuilder.setTitle(getString(R.string.delete_recipe))
+            alertDialogBuilder.setMessage(getString(R.string.exactly))
+            alertDialogBuilder.setPositiveButton(getString(R.string.yes)) { dialog, _ ->
                 viewModel.viewModelScope.launch {
                     viewModel.deleteRecipeItem(recipeItem)
                 }
                 dialog.dismiss()
             }
-            alertDialogBuilder.setNegativeButton("No") { dialog, _ ->
+            alertDialogBuilder.setNegativeButton(getString(R.string.no)) { dialog, _ ->
                 dialog.dismiss()
             }
             val alertDialog = alertDialogBuilder.create()
