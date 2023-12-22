@@ -5,6 +5,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 
 
 @Dao
@@ -12,7 +14,7 @@ interface RecipeItemDao {
 
 
     @Query("SELECT * FROM recipe_items")
-    fun getRecipeList(): LiveData<List<RecipeItemDbModel>>
+    fun getRecipeList(): Flow<List<RecipeItemDbModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addRecipe(recipeItemDbModel: RecipeItemDbModel)

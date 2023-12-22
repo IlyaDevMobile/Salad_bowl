@@ -109,7 +109,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ingredients_Fld"
                     android:layout_width="match_parent"
-                    android:layout_height="154dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="150dp"
                     android:gravity="top"
                     android:textColor="@color/black" />
 
@@ -137,7 +138,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/description_Fld"
                     android:layout_width="match_parent"
-                    android:layout_height="154dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="150dp"
                     android:gravity="top"
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>

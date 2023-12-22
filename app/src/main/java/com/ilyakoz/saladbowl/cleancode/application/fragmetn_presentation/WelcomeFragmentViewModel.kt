@@ -8,13 +8,13 @@ import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
 import kotlinx.coroutines.launch
 
 
-class WelcomeFragmentViewModel (
+class WelcomeFragmentViewModel(
     private val getListRecipeUseCase: GetListRecipeUseCase,
     private val deleteRecipeUseCase: DeleteRecipeUseCase
 ) : ViewModel() {
 
 
-    val recipeListTest = getListRecipeUseCase.getRecipeList()
+    val recipeListTest = getListRecipeUseCase.invoke()
 
 
     suspend fun deleteRecipeItem(recipeItem: RecipeItem) {

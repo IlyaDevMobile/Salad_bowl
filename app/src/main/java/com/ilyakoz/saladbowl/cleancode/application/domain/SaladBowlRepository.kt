@@ -1,8 +1,13 @@
 package com.ilyakoz.saladbowl.cleancode.application.domain
 
-import androidx.lifecycle.LiveData
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 
 interface SaladBowlRepository {
+
+
+   fun getRecipeList(): Flow<List<RecipeItem>>
+
 
    suspend fun addRecipe(recipeItem: RecipeItem)
    suspend fun deleteRecipe(recipeItem: RecipeItem)
@@ -10,5 +15,4 @@ interface SaladBowlRepository {
    suspend fun getRecipe(recipeItemId: Int) : RecipeItem
 
 
-   fun getRecipeList(): LiveData<List<RecipeItem>>
 }
