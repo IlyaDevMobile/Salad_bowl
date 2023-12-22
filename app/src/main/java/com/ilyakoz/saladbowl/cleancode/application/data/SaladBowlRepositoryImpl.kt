@@ -1,6 +1,5 @@
 package com.ilyakoz.saladbowl.cleancode.application.data
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
