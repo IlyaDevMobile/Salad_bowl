@@ -1,7 +1,6 @@
 package com.ilyakoz.saladbowl.cleancode.application.domain
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+
 
 
 data class RecipeItem(

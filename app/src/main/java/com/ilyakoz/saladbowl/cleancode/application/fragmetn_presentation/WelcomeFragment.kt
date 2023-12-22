@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ilyakoz.saladbowl.cleancode.application.data.RecipeItemDbModel
 import com.ilyakoz.saladbowl.cleancode.application.domain.RecipeItem
@@ -50,6 +51,9 @@ class WelcomeFragment : Fragment() {
         viewModel.recipeListTest.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
+        binding.addNewRecipeBtn.setOnClickListener {
+            findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToCreateNewRecipeFragment())
+        }
     }
 
     override fun onDestroy() {
@@ -58,7 +62,7 @@ class WelcomeFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        val layout = LinearLayoutManager(requireContext())
+        val layout = GridLayoutManager(requireContext(), 2)
         binding.recyclerview.layoutManager = layout
         adapter = SaladBowlAdapter()
         binding.recyclerview.adapter = adapter

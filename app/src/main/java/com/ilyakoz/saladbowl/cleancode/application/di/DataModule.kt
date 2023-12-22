@@ -30,7 +30,5 @@ val dataModule = module {
     single<SaladBowlRepository> {
         SaladBowlRepositoryImpl(recipeItemDao =  get())
     }
-
-
 }
 
